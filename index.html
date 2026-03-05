@@ -713,14 +713,42 @@ footer a:hover { color: var(--amber); }
   };
 
   const langSelect = document.getElementById('lang-select');
-  const browserLang = (navigator.language || 'en').slice(0, 2);
-  const initialLang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('amberloom-lang') || (translations[browserLang] ? browserLang : 'en');
-  langSelect.value = translations[initialLang] ? initialLang : 'en';
-  applyTranslations(langSelect.value);
+  const SUPPORTED_LOCALES = Object.keys(translations);
+
+  const toSupportedLocale = (value) => {
+    if (!value) return null;
+    const normalized = String(value).toLowerCase();
+    const exact = SUPPORTED_LOCALES.find(locale => locale === normalized);
+    if (exact) return exact;
+    const base = normalized.split(/[-_]/)[0];
+    return SUPPORTED_LOCALES.find(locale => locale === base) || null;
+  };
+
+  const browserLocale = (() => {
+    const candidates = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language];
+
+    for (const candidate of candidates) {
+      const locale = toSupportedLocale(candidate);
+      if (locale) return locale;
+    }
+
+    return 'en';
+  })();
+
+  const initialLang =
+    toSupportedLocale(new URLSearchParams(window.location.search).get('lang')) ||
+    toSupportedLocale(localStorage.getItem('amberloom-lang')) ||
+    browserLocale;
+
+  langSelect.value = initialLang;
+  applyTranslations(initialLang);
 
   langSelect.addEventListener('change', (e) => {
-    localStorage.setItem('amberloom-lang', e.target.value);
-    applyTranslations(e.target.value);
+    const selectedLocale = toSupportedLocale(e.target.value) || 'en';
+    localStorage.setItem('amberloom-lang', selectedLocale);
+    applyTranslations(selectedLocale);
   });
 </script>
 

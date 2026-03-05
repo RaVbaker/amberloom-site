@@ -13,4 +13,4 @@ Webpage for amberloom app
 ### Language selection
 
 - Users can switch language from the nav dropdown.
-- Locale precedence: `?lang=` query parameter → `localStorage` (`amberloom-lang`) → browser language fallback.
+- Locale precedence: `?lang=` query parameter → `localStorage` (`amberloom-lang`) → browser locale fallback from `navigator.languages` / `navigator.language` (normalized to `en`/`pl`/`nl`).
