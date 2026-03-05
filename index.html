@@ -504,33 +504,33 @@ footer a:hover { color: var(--amber); }
     <div class="features-grid">
       <div class="feat-card">
         <div class="feat-icon">📅</div>
-        <h3>One entry per day</h3>
-        <p>Focus is the point. One question, one moment — no pressure to fill a diary every night.</p>
+        <h3 data-i18n="features.cards.entryDaily.title">One entry per day</h3>
+        <p data-i18n="features.cards.entryDaily.body">Focus is the point. One question, one moment — no pressure to fill a diary every night.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🎙️</div>
-        <h3>Voice & photos</h3>
-        <p>Capture your child's actual voice alongside a photo. Future you will treasure both.</p>
+        <h3 data-i18n="features.cards.voicePhotos.title">Voice & photos</h3>
+        <p data-i18n="features.cards.voicePhotos.body">Capture your child's actual voice alongside a photo. Future you will treasure both.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🗓️</div>
-        <h3>Beautiful timeline</h3>
-        <p>Browse entries by month and year. Watch the story of childhood unfold, entry by entry.</p>
+        <h3 data-i18n="features.cards.timeline.title">Beautiful timeline</h3>
+        <p data-i18n="features.cards.timeline.body">Browse entries by month and year. Watch the story of childhood unfold, entry by entry.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🔔</div>
-        <h3>Daily reminder</h3>
-        <p>Set your perfect moment — after dinner, after bath — and let the app come to you.</p>
+        <h3 data-i18n="features.cards.reminder.title">Daily reminder</h3>
+        <p data-i18n="features.cards.reminder.body">Set your perfect moment — after dinner, after bath — and let the app come to you.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🎂</div>
-        <h3>Birthday magic</h3>
-        <p>Entries on your child's birthday are highlighted — a tiny celebration built right in.</p>
+        <h3 data-i18n="features.cards.birthday.title">Birthday magic</h3>
+        <p data-i18n="features.cards.birthday.body">Entries on your child's birthday are highlighted — a tiny celebration built right in.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🔒</div>
-        <h3>Private by design</h3>
-        <p>Your memories live on your device. No social feeds, no algorithms, no ads.</p>
+        <h3 data-i18n="features.cards.private.title">Private by design</h3>
+        <p data-i18n="features.cards.private.body">Your memories live on your device. No social feeds, no algorithms, no ads.</p>
       </div>
     </div>
   </div>
@@ -552,27 +552,27 @@ footer a:hover { color: var(--amber); }
     <p class="section-sub" style="margin: 12px auto 0;" data-i18n="pricing.sub">Start free. Unlock forever for the price of a coffee.</p>
     <div class="pricing-cards">
       <div class="pricing-card">
-        <p class="pricing-plan">Free</p>
+        <p class="pricing-plan" data-i18n="pricing.free.plan">Free</p>
         <p class="pricing-price"><sup></sup>$0</p>
-        <p class="pricing-desc">Always, for everyone</p>
+        <p class="pricing-desc" data-i18n="pricing.free.desc">Always, for everyone</p>
         <ul class="pricing-features">
-          <li>Unlimited daily entries</li>
-          <li>Photos & text</li>
-          <li>Access last 7 days</li>
-          <li>Daily reminder</li>
+          <li data-i18n="pricing.free.items.entries">Unlimited daily entries</li>
+          <li data-i18n="pricing.free.items.photos">Photos & text</li>
+          <li data-i18n="pricing.free.items.lastDays">Access last 7 days</li>
+          <li data-i18n="pricing.free.items.reminder">Daily reminder</li>
         </ul>
         <a href="#" class="pricing-btn pricing-btn-outline js-download-link" data-i18n="cta.downloadFree">Download free</a>
       </div>
       <div class="pricing-card featured">
-        <p class="pricing-plan">Lifetime</p>
+        <p class="pricing-plan" data-i18n="pricing.lifetime.plan">Lifetime</p>
         <p class="pricing-price"><sup>$</sup>2.99</p>
-        <p class="pricing-desc">One-time, forever</p>
+        <p class="pricing-desc" data-i18n="pricing.lifetime.desc">One-time, forever</p>
         <ul class="pricing-features">
-          <li>Everything in Free</li>
-          <li>Full timeline — all memories</li>
-          <li>Voice memos</li>
-          <li>Multi-child profiles</li>
-          <li>Export your memories</li>
+          <li data-i18n="pricing.lifetime.items.everything">Everything in Free</li>
+          <li data-i18n="pricing.lifetime.items.timeline">Full timeline — all memories</li>
+          <li data-i18n="pricing.lifetime.items.voice">Voice memos</li>
+          <li data-i18n="pricing.lifetime.items.profiles">Multi-child profiles</li>
+          <li data-i18n="pricing.lifetime.items.export">Export your memories</li>
         </ul>
         <a href="#" class="pricing-btn pricing-btn-solid js-download-link" data-i18n="pricing.unlock">Unlock for $2.99</a>
       </div>
@@ -632,9 +632,19 @@ footer a:hover { color: var(--amber); }
         step3: { title: 'Weave the timeline', body: 'Entries stack into a beautiful timeline of growing-up moments — yours to revisit forever.' }
       },
       questions: { label: 'The questions', title: 'Over 300 prompts crafted<br/>to spark real conversations.' },
-      features: { label: 'Features', title: 'Everything a family memory needs.' },
+      features: { label: 'Features', title: 'Everything a family memory needs.', cards: {
+        entryDaily: { title: 'One entry per day', body: 'Focus is the point. One question, one moment — no pressure to fill a diary every night.' },
+        voicePhotos: { title: 'Voice & photos', body: 'Capture your child\'s actual voice alongside a photo. Future you will treasure both.' },
+        timeline: { title: 'Beautiful timeline', body: 'Browse entries by month and year. Watch the story of childhood unfold, entry by entry.' },
+        reminder: { title: 'Daily reminder', body: 'Set your perfect moment — after dinner, after bath — and let the app come to you.' },
+        birthday: { title: 'Birthday magic', body: 'Entries on your child\'s birthday are highlighted — a tiny celebration built right in.' },
+        private: { title: 'Private by design', body: 'Your memories live on your device. No social feeds, no algorithms, no ads.' }
+      } },
       quote: { text: '"The days are long, but the years are short. <em>Amberloom</em> is how we hold onto the short ones."', attr: '— A parent, somewhere, bedtime' },
-      pricing: { label: 'Pricing', title: 'Simple, honest pricing.', sub: 'Start free. Unlock forever for the price of a coffee.', unlock: 'Unlock for $2.99' },
+      pricing: { label: 'Pricing', title: 'Simple, honest pricing.', sub: 'Start free. Unlock forever for the price of a coffee.', unlock: 'Unlock for $2.99',
+        free: { plan: 'Free', desc: 'Always, for everyone', items: { entries: 'Unlimited daily entries', photos: 'Photos & text', lastDays: 'Access last 7 days', reminder: 'Daily reminder' } },
+        lifetime: { plan: 'Lifetime', desc: 'One-time, forever', items: { everything: 'Everything in Free', timeline: 'Full timeline — all memories', voice: 'Voice memos', profiles: 'Multi-child profiles', export: 'Export your memories' } }
+      },
       footerCta: { title: 'Start tonight.<br /><em>They won\'t be this age tomorrow.</em>', sub: 'Free to download. One moment to capture. A lifetime to look back on.' },
       footer: { copy: '© 2026 Amberloom. Made with love for parents.', privacy: 'Privacy', support: 'Support' },
       ticker: { questions: [
@@ -653,9 +663,19 @@ footer a:hover { color: var(--amber); }
         step2: { title: 'Uchwyć moment', body: 'Napisz kilka słów, dodaj zdjęcie albo nagraj głos. Tak, jak chce opowiedzieć Twoje dziecko.' },
         step3: { title: 'Ułóż oś czasu', body: 'Wpisy tworzą piękną oś dorastania — do której możesz wracać na zawsze.' } },
       questions: { label: 'Pytania', title: 'Ponad 300 pytań,<br/>które pobudzają prawdziwe rozmowy.' },
-      features: { label: 'Funkcje', title: 'Wszystko, czego potrzebują rodzinne wspomnienia.' },
+      features: { label: 'Funkcje', title: 'Wszystko, czego potrzebują rodzinne wspomnienia.', cards: {
+        entryDaily: { title: 'Jeden wpis dziennie', body: 'Liczy się skupienie. Jedno pytanie, jedna chwila — bez presji, by codziennie zapełniać pamiętnik.' },
+        voicePhotos: { title: 'Głos i zdjęcia', body: 'Uchwyć prawdziwy głos dziecka razem ze zdjęciem. W przyszłości docenisz oba.' },
+        timeline: { title: 'Piękna oś czasu', body: 'Przeglądaj wpisy według miesięcy i lat. Oglądaj historię dzieciństwa, wpis po wpisie.' },
+        reminder: { title: 'Codzienne przypomnienie', body: 'Ustaw idealny moment — po kolacji, po kąpieli — a aplikacja przyjdzie do Ciebie.' },
+        birthday: { title: 'Urodzinowa magia', body: 'Wpisy z urodzin dziecka są wyróżniane — małe święto wbudowane w aplikację.' },
+        private: { title: 'Prywatność z założenia', body: 'Twoje wspomnienia są na Twoim urządzeniu. Bez feedów społecznościowych, algorytmów i reklam.' }
+      } },
       quote: { text: '"Dni są długie, ale lata krótkie. <em>Amberloom</em> pomaga nam zatrzymać te krótkie."', attr: '— Rodzic, gdzieś, przed snem' },
-      pricing: { label: 'Cennik', title: 'Prosto i uczciwie.', sub: 'Zacznij za darmo. Odblokuj na zawsze za cenę kawy.', unlock: 'Odblokuj za $2.99' },
+      pricing: { label: 'Cennik', title: 'Prosto i uczciwie.', sub: 'Zacznij za darmo. Odblokuj na zawsze za cenę kawy.', unlock: 'Odblokuj za $2.99',
+        free: { plan: 'Darmowy', desc: 'Zawsze, dla każdego', items: { entries: 'Nielimitowane codzienne wpisy', photos: 'Zdjęcia i tekst', lastDays: 'Dostęp do ostatnich 7 dni', reminder: 'Codzienne przypomnienie' } },
+        lifetime: { plan: 'Na zawsze', desc: 'Jednorazowo, na zawsze', items: { everything: 'Wszystko z planu Darmowy', timeline: 'Pełna oś czasu — wszystkie wspomnienia', voice: 'Notatki głosowe', profiles: 'Profile wielu dzieci', export: 'Eksport wspomnień' } }
+      },
       footerCta: { title: 'Zacznij dziś wieczorem.<br /><em>Jutro nie będą już w tym wieku.</em>', sub: 'Darmowe pobranie. Jedna chwila do uchwycenia. Całe życie wspominania.' },
       footer: { copy: '© 2026 Amberloom. Z miłości do rodziców.', privacy: 'Prywatność', support: 'Wsparcie' },
       ticker: { questions: ['Jaka emocja była dziś najsilniejsza i dlaczego?', 'Z czego dziś byłeś dumny?', 'Co sprawiło, że dziś poczułeś odwagę?', 'Jaki dźwięk zapamiętasz z dzisiejszego dnia?'] }
@@ -669,9 +689,19 @@ footer a:hover { color: var(--amber); }
         step2: { title: 'Leg het moment vast', body: 'Schrijf een paar woorden, voeg een foto toe of neem een spraakmemo op.' },
         step3: { title: 'Weef de tijdlijn', body: 'Inzendingen vormen samen een mooie tijdlijn van opgroeien.' } },
       questions: { label: 'De vragen', title: 'Meer dan 300 prompts<br/>voor echte gesprekken.' },
-      features: { label: 'Functies', title: 'Alles wat een familieherinnering nodig heeft.' },
+      features: { label: 'Functies', title: 'Alles wat een familieherinnering nodig heeft.', cards: {
+        entryDaily: { title: 'Eén invoer per dag', body: 'Focus is het doel. Eén vraag, één moment — geen druk om elke avond een dagboek te vullen.' },
+        voicePhotos: { title: 'Stem en foto\'s', body: 'Leg de echte stem van je kind vast naast een foto. Je toekomstige zelf zal beide koesteren.' },
+        timeline: { title: 'Mooie tijdlijn', body: 'Blader door invoeren per maand en jaar. Zie het verhaal van de kindertijd ontvouwen, invoer voor invoer.' },
+        reminder: { title: 'Dagelijkse herinnering', body: 'Stel je perfecte moment in — na het eten, na het bad — en laat de app naar je toe komen.' },
+        birthday: { title: 'Verjaardagsmagie', body: 'Invoeren op de verjaardag van je kind worden uitgelicht — een klein ingebouwd feestje.' },
+        private: { title: 'Privé by design', body: 'Je herinneringen blijven op je apparaat. Geen sociale feeds, geen algoritmes, geen advertenties.' }
+      } },
       quote: { text: '"De dagen zijn lang, maar de jaren kort. <em>Amberloom</em> helpt ons die korte jaren vast te houden."', attr: '— Een ouder, ergens, voor het slapengaan' },
-      pricing: { label: 'Prijzen', title: 'Eerlijke, simpele prijzen.', sub: 'Begin gratis. Ontgrendel voor altijd voor de prijs van een koffie.', unlock: 'Ontgrendel voor $2.99' },
+      pricing: { label: 'Prijzen', title: 'Eerlijke, simpele prijzen.', sub: 'Begin gratis. Ontgrendel voor altijd voor de prijs van een koffie.', unlock: 'Ontgrendel voor $2.99',
+        free: { plan: 'Gratis', desc: 'Altijd, voor iedereen', items: { entries: 'Onbeperkt dagelijkse invoeren', photos: 'Foto\'s en tekst', lastDays: 'Toegang tot de laatste 7 dagen', reminder: 'Dagelijkse herinnering' } },
+        lifetime: { plan: 'Levenslang', desc: 'Eenmalig, voor altijd', items: { everything: 'Alles in Gratis', timeline: 'Volledige tijdlijn — alle herinneringen', voice: 'Spraakmemo\'s', profiles: 'Profielen voor meerdere kinderen', export: 'Exporteer je herinneringen' } }
+      },
       footerCta: { title: 'Begin vanavond.<br /><em>Morgen hebben ze deze leeftijd niet meer.</em>', sub: 'Gratis te downloaden. Eén moment om vast te leggen. Een leven lang terugkijken.' },
       footer: { copy: '© 2026 Amberloom. Met liefde gemaakt voor ouders.', privacy: 'Privacy', support: 'Support' },
       ticker: { questions: ['Welke emotie voelde je vandaag het meest?', 'Wanneer voelde je je vandaag trots?', 'Wat maakte je vandaag dapper?', 'Welk geluid van vandaag onthoud je?'] }
@@ -685,9 +715,19 @@ footer a:hover { color: var(--amber); }
         step2: { title: 'Зафіксуйте мить', body: 'Напишіть кілька слів, додайте фото або запишіть голосове повідомлення. Так, як цього хоче ваша дитина.' },
         step3: { title: 'Сплетіть часову лінію', body: 'Записи складаються у гарну стрічку дорослішання — до якої ви зможете повертатися завжди.' } },
       questions: { label: 'Запитання', title: 'Понад 300 підказок,<br/>щоб запалити справжні розмови.' },
-      features: { label: 'Функції', title: 'Усе, що потрібно для сімейних спогадів.' },
+      features: { label: 'Функції', title: 'Усе, що потрібно для сімейних спогадів.', cards: {
+        entryDaily: { title: 'Один запис на день', body: 'Суть у фокусі. Одне запитання, одна мить — без тиску заповнювати щоденник щовечора.' },
+        voicePhotos: { title: 'Голос і фото', body: 'Збережіть справжній голос дитини разом із фото. У майбутньому ви цінуватимете обидва.' },
+        timeline: { title: 'Гарна часова лінія', body: 'Переглядайте записи за місяцями та роками. Дивіться, як розгортається історія дитинства, запис за записом.' },
+        reminder: { title: 'Щоденне нагадування', body: 'Оберіть ідеальний момент — після вечері, після купання — і нехай застосунок сам нагадає.' },
+        birthday: { title: 'Магія дня народження', body: 'Записи в день народження дитини виділяються — маленьке свято прямо в застосунку.' },
+        private: { title: 'Приватність за задумом', body: 'Ваші спогади зберігаються на вашому пристрої. Без соцстрічок, алгоритмів і реклами.' }
+      } },
       quote: { text: '"Дні довгі, а роки короткі. <em>Amberloom</em> допомагає нам утримати ці короткі роки."', attr: '— Один із батьків, десь, перед сном' },
-      pricing: { label: 'Ціни', title: 'Просто й чесно.', sub: 'Почніть безкоштовно. Розблокуйте назавжди за ціною чашки кави.', unlock: 'Розблокувати за $2.99' },
+      pricing: { label: 'Ціни', title: 'Просто й чесно.', sub: 'Почніть безкоштовно. Розблокуйте назавжди за ціною чашки кави.', unlock: 'Розблокувати за $2.99',
+        free: { plan: 'Безкоштовно', desc: 'Завжди, для всіх', items: { entries: 'Необмежені щоденні записи', photos: 'Фото й текст', lastDays: 'Доступ до останніх 7 днів', reminder: 'Щоденне нагадування' } },
+        lifetime: { plan: 'Назавжди', desc: 'Разова оплата, назавжди', items: { everything: 'Усе з Безкоштовно', timeline: 'Повна стрічка — усі спогади', voice: 'Голосові нотатки', profiles: 'Профілі для кількох дітей', export: 'Експорт ваших спогадів' } }
+      },
       footerCta: { title: 'Почніть сьогодні ввечері.<br /><em>Завтра вони вже не будуть цього віку.</em>', sub: 'Безкоштовне завантаження. Одна мить, яку варто зберегти. Спогади на все життя.' },
       footer: { copy: '© 2026 Amberloom. Створено з любов’ю для батьків.', privacy: 'Конфіденційність', support: 'Підтримка' },
       ticker: { questions: ['Яка емоція сьогодні була найсильнішою і чому?', 'Коли сьогодні ти відчув(ла) гордість?', 'Що сьогодні зробило тебе сміливим(ою)?', 'Який звук із сьогоднішнього дня ти запам’ятаєш?'] }
