@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amberloom Support</title>
+  <link rel="icon" type="image/jpeg" href="./favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --amber: #E8850A;
+      --brown-dark: #2C1A0E;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E8D0;
+      --text-main: #2C1A0E;
+      --text-soft: #7A5C3A;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 30px; }
+    .logo { text-decoration: none; color: var(--brown-dark); font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; }
+    .back { text-decoration: none; color: var(--amber); font-weight: 600; }
+    .card { background: #fff; border: 1px solid rgba(232, 133, 10, 0.2); border-radius: 20px; padding: 28px; box-shadow: 0 8px 32px rgba(44, 26, 14, 0.08); }
+    h1, h2, h3 { font-family: 'Lora', serif; color: var(--brown-dark); }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 14px; }
+    h2 { font-size: 1.4rem; margin: 24px 0 10px; }
+    h3 { font-size: 1.05rem; margin: 16px 0 6px; }
+    p { color: var(--text-soft); margin: 0; }
+    .faq-item + .faq-item { margin-top: 14px; }
+    .contact-box { margin-top: 24px; padding: 16px; border-radius: 14px; background: var(--cream-dark); border: 1px solid rgba(232, 133, 10, 0.2); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="logo" href="./index.html">Amberloom</a>
+      <a class="back" href="./index.html">← Back to home</a>
+    </div>
+
+    <article class="card">
+      <h1>Amberloom Support</h1>
+      <p>Amberloom is a simple family journaling app.</p>
+
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>How to restore purchases?</h3>
+        <p>Use the Restore Purchases button in Settings.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How is my data stored?</h3>
+        <p>Your data is stored locally and optionally synced through iCloud.</p>
+      </div>
+
+      <h2>Contact</h2>
+      <div class="contact-box">
+        <p><strong>amberloom.app@ravbaker.net</strong></p>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
