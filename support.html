@@ -37,6 +37,18 @@
     p { color: var(--text-soft); margin: 0; }
     .faq-item + .faq-item { margin-top: 14px; }
     .contact-box { margin-top: 24px; padding: 16px; border-radius: 14px; background: var(--cream-dark); border: 1px solid rgba(232, 133, 10, 0.2); }
+    .contact-box a,
+    .contact-box a:visited {
+      color: var(--brown-dark);
+      text-decoration: underline;
+      text-decoration-color: rgba(232, 133, 10, 0.45);
+      text-underline-offset: 2px;
+    }
+    .contact-box a:hover,
+    .contact-box a:active {
+      color: var(--amber);
+      text-decoration-color: var(--amber);
+    }
   </style>
 </head>
 <body>
@@ -60,9 +72,9 @@
         <p>Your data is stored locally and optionally synced through iCloud.</p>
       </div>
 
-      <h2>Contact</h2>
+      <h2>Support</h2>
       <div class="contact-box">
-        <p><strong>amberloom.app@ravbaker.net</strong></p>
+        <p><a href="mailto:amberoom.app@ravbaker.net"><strong>amberoom.app@ravbaker.net</strong></a></p>
       </div>
     </article>
   </main>
