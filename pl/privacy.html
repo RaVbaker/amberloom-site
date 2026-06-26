@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polityka Prywatności Amberloom</title>
+  <link rel="icon" type="image/jpeg" href="../favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --amber: #E8850A;
+      --brown-dark: #2C1A0E;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E8D0;
+      --text-main: #2C1A0E;
+      --text-soft: #7A5C3A;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      text-decoration: none;
+      color: var(--brown-dark);
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .back {
+      text-decoration: none;
+      color: var(--amber);
+      font-weight: 600;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(232, 133, 10, 0.2);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 32px rgba(44, 26, 14, 0.08);
+    }
+    h1 { font-family: 'Lora', serif; color: var(--brown-dark); }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 8px; }
+    p { color: var(--text-soft); }
+    .muted { color: #9A7A55; font-size: 0.92rem; margin-bottom: 18px; }
+    .contact-box {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--cream-dark);
+      border: 1px solid rgba(232, 133, 10, 0.2);
+    }
+    .contact-box a,
+    .contact-box a:visited {
+      color: var(--brown-dark);
+      text-decoration: underline;
+      text-decoration-color: rgba(232, 133, 10, 0.45);
+      text-underline-offset: 2px;
+    }
+    .contact-box a:hover,
+    .contact-box a:active {
+      color: var(--amber);
+      text-decoration-color: var(--amber);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="logo" href="../index.html">Amberloom</a>
+      <a class="back" href="../index.html">← Powrót do strony głównej</a>
+    </div>
+
+    <article class="card">
+      <h1>Polityka Prywatności</h1>
+      <p class="muted">Ostatnia aktualizacja: 10 marca 2026</p>
+
+      <p>Amberloom nie zbiera, nie przechowuje ani nie udostępnia danych osobowych.</p>
+      <p>Wszystkie dane w Amberloom są dostarczane za zgodą rodzica lub opiekuna.</p>
+      <p>Wszystkie dane tworzone w aplikacji są przechowywane lokalnie na urządzeniu użytkownika i mogą być opcjonalnie synchronizowane przez usługi Apple iCloud.</p>
+      <p>Nie używamy reklam, analityki ani śledzenia przez strony trzecie.</p>
+
+      <div class="contact-box">
+        <p>W razie pytań skontaktuj się z nami: <a href="mailto:hi@amberloom.app"><strong>hi@amberloom.app</strong></a></p>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

@@ -615,6 +615,10 @@ footer a:hover { color: var(--amber); }
     support: './support.html',
   };
 
+  const LOCALIZED_LINKS = {
+    pl: { privacy: './pl/privacy.html', support: './pl/support.html' },
+  };
+
   const translations = {
     en: {
       nav: { languageLabel: 'Language' },
@@ -735,10 +739,11 @@ footer a:hover { color: var(--amber); }
   };
 
   const getPath = (obj, path) => path.split('.').reduce((acc, key) => acc?.[key], obj);
-  const setLinks = () => {
-    document.querySelectorAll('.js-download-link').forEach(el => el.href = LINKS.appStore);
-    document.querySelectorAll('.js-privacy-link').forEach(el => el.href = LINKS.privacy);
-    document.querySelectorAll('.js-support-link').forEach(el => el.href = LINKS.support);
+  const setLinks = (lang) => {
+    const links = { ...LINKS, ...LOCALIZED_LINKS[lang] };
+    document.querySelectorAll('.js-download-link').forEach(el => el.href = links.appStore);
+    document.querySelectorAll('.js-privacy-link').forEach(el => el.href = links.privacy);
+    document.querySelectorAll('.js-support-link').forEach(el => el.href = links.support);
   };
 
   const renderTicker = (dict) => {
@@ -765,7 +770,7 @@ footer a:hover { color: var(--amber); }
       if (value) el.innerHTML = value;
     });
     renderTicker(dict);
-    setLinks();
+    setLinks(lang);
   };
 
   const langSelect = document.getElementById('lang-select');
