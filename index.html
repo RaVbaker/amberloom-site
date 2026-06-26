@@ -126,66 +126,25 @@ nav {
 }
 .btn-ghost:hover { color: var(--amber); border-color: var(--amber); }
 
-/* ── PHONE MOCKUP ── */
+/* ── SCREENSHOT STRIP ── */
 .hero-visual {
   z-index: 1; margin-top: 72px;
-  display: flex; gap: 32px; align-items: flex-end; justify-content: center;
-  flex-wrap: wrap;
+  overflow-x: auto; overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
 }
-.phone {
-  width: 240px;
-  background: var(--cream-dark);
-  border-radius: 36px;
-  border: 1px solid rgba(232,133,10,0.18);
-  box-shadow: 0 20px 60px rgba(44,26,14,0.15), 0 4px 12px rgba(44,26,14,0.08);
-  overflow: hidden; position: relative;
-  padding: 0 0 24px;
+.hero-visual::-webkit-scrollbar { display: none; }
+.screenshots-strip {
+  display: flex; gap: 16px;
+  padding: 20px 48px 40px;
+  width: max-content; margin: 0 auto;
 }
-.phone.secondary { transform: scale(0.88) translateY(24px); opacity: 0.85; }
-.phone-notch {
-  width: 90px; height: 20px;
-  background: var(--cream-dark);
-  border-radius: 0 0 14px 14px;
-  margin: 0 auto 0;
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  z-index: 2;
-}
-.phone-screen {
-  background: var(--cream);
-  border-radius: 28px;
-  margin: 8px 8px 0;
-  padding: 40px 16px 16px;
-  min-height: 420px;
-}
-.screen-title {
-  font-family: 'Lora', serif; font-size: 1rem; font-weight: 700;
-  text-align: center; color: var(--brown-dark); margin-bottom: 16px;
-}
-.entry-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 14px;
-  margin-bottom: 10px;
-  border: 1px solid rgba(232,133,10,0.1);
-  box-shadow: 0 2px 8px rgba(44,26,14,0.06);
-}
-.entry-date { font-size: 0.72rem; font-weight: 600; color: var(--brown-dark); margin-bottom: 2px; }
-.entry-question { font-size: 0.7rem; color: var(--text-soft); font-style: italic; margin-bottom: 6px; }
-.entry-answer { font-size: 0.78rem; color: var(--text-main); font-weight: 500; }
-.entry-thumb {
-  width: 48px; height: 48px; border-radius: 10px;
-  background: linear-gradient(135deg, #FFD580, #E8850A);
-  float: right; margin-left: 10px;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-}
-.fab {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--amber);
-  display: flex; align-items: center; justify-content: center;
-  position: absolute; bottom: 28px; right: 24px;
-  box-shadow: 0 4px 16px rgba(232,133,10,0.4);
-  font-size: 1.3rem; color: #fff; font-weight: 300;
+.store-img {
+  height: 480px; width: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(44,26,14,0.18), 0 4px 12px rgba(44,26,14,0.08);
+  display: block;
 }
 
 /* ── SECTION COMMONS ── */
@@ -373,7 +332,6 @@ footer a:hover { color: var(--amber); }
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   nav { padding: 14px 20px; }
-  .phone.secondary { display: none; }
 }
 
   </style>
@@ -408,51 +366,14 @@ footer a:hover { color: var(--amber); }
     <a href="#how" class="btn-ghost" data-i18n="hero.seeHow">See how it works ↓</a>
   </div>
 
-  <!-- Phone mockups -->
-
   <div class="hero-visual">
-    <div class="phone secondary">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <div class="screen-title">March 2, 2026</div>
-        <div style="background:#fff;border-radius:14px;padding:16px;border:1px solid rgba(232,133,10,0.1);">
-          <div style="font-size:0.85rem;font-style:italic;color:#7A5C3A;margin-bottom:14px;line-height:1.5;">What made you feel proud today?</div>
-          <div style="background:#FDF6EC;border-radius:10px;height:100px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:12px;">🏰</div>
-          <div style="font-size:0.82rem;color:#2C1A0E;font-weight:500;margin-bottom:12px;">I built the tallest LEGO tower ever!</div>
-          <div style="background:#FDF6EC;border-radius:10px;padding:10px 14px;display:flex;gap:10px;align-items:center;">
-            <div style="width:28px;height:28px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:0.7rem;">▶</div>
-            <div style="font-size:0.7rem;color:var(--text-muted);">00:24 · voice memo</div>
-          </div>
-        </div>
-      </div>
+    <div class="screenshots-strip">
+      <img class="store-img" src="./images/en/image1.png" alt="Amberloom" />
+      <img class="store-img" src="./images/en/image2.png" alt="Amberloom" />
+      <img class="store-img" src="./images/en/image3.png" alt="Amberloom" />
+      <img class="store-img" src="./images/en/image4.png" alt="Amberloom" />
+      <img class="store-img" src="./images/en/image5.png" alt="Amberloom" />
     </div>
-
-
-<div class="phone">
-  <div class="phone-notch"></div>
-  <div class="phone-screen">
-    <div class="screen-title">March 2026</div>
-    <div class="entry-card">
-      <div class="entry-thumb">🏰</div>
-      <div class="entry-date">March 2</div>
-      <div class="entry-question">What made you feel proud today?</div>
-      <div class="entry-answer">Built the tallest LEGO tower ever!</div>
-    </div>
-    <div class="entry-card">
-      <div class="entry-date">March 1</div>
-      <div class="entry-question">What sound do you remember from today?</div>
-      <div class="entry-answer">Rain on the window at bedtime.</div>
-    </div>
-    <div class="entry-card">
-      <div class="entry-date">February 28</div>
-      <div class="entry-question">If today was an animal, what would it be?</div>
-      <div class="entry-answer">A happy golden retriever 🐶</div>
-    </div>
-  </div>
-  <div class="fab">+</div>
-</div>
-
-
   </div>
 </section>
 
@@ -746,6 +667,13 @@ footer a:hover { color: var(--amber); }
     document.querySelectorAll('.js-support-link').forEach(el => el.href = links.support);
   };
 
+  const updateScreenshots = (lang) => {
+    const dir = lang === 'pl' ? './images/pl/' : './images/en/';
+    document.querySelectorAll('.store-img').forEach((img, i) => {
+      img.src = `${dir}image${i + 1}.png`;
+    });
+  };
+
   const renderTicker = (dict) => {
     const ticker = document.getElementById('ticker');
     ticker.innerHTML = '';
@@ -771,6 +699,7 @@ footer a:hover { color: var(--amber); }
     });
     renderTicker(dict);
     setLinks(lang);
+    updateScreenshots(lang);
   };
 
   const langSelect = document.getElementById('lang-select');
