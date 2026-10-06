@@ -42,7 +42,7 @@ They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channe
 From back to front:
 
 1. **Background**: a full-page image of the original gradient. Canva can't make this kind of gradient natively, so to change the colour, replace this image or put a Canva gradient on top of it.
-2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. On page 2 this layer also includes the tilted phone on the left.
+2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. The shadow it casts on the background is part of this layer, so replacing it replaces the shadow too. On page 2 this layer also includes the tilted phone on the left.
 3. **Decorations**: separate images for the doodles (circles, underlines, rays, the heart, the frames on page 3, the asterisk on page 2) and the books on page 3.
 4. **Text**: the headlines, the "Amberloom" pill on page 2, and the "Start with one moment…" line on page 4. All of these are live, editable Canva text.
 
