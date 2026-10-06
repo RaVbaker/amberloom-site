@@ -71,10 +71,100 @@
   "width": 410,
   "height": 420
  },
+ "books_en3": {
+  "left": 665,
+  "top": 2184,
+  "width": 625,
+  "height": 612
+ },
+ "books_pl3": {
+  "left": 665,
+  "top": 2184,
+  "width": 625,
+  "height": 612
+ },
+ "doodle_en1_0": {
+  "left": 333,
+  "top": 458,
+  "width": 424,
+  "height": 162
+ },
+ "doodle_en1_1": {
+  "left": 0,
+  "top": 698,
+  "width": 242,
+  "height": 248
+ },
+ "doodle_en3_0": {
+  "left": 56,
+  "top": 45,
+  "width": 1061,
+  "height": 290
+ },
+ "doodle_en3_1": {
+  "left": 99,
+  "top": 290,
+  "width": 1135,
+  "height": 280
+ },
+ "doodle_en4_0": {
+  "left": 1023,
+  "top": 0,
+  "width": 200,
+  "height": 173
+ },
+ "doodle_en4_1": {
+  "left": 1156,
+  "top": 230,
+  "width": 101,
+  "height": 38
+ },
+ "doodle_en4_2": {
+  "left": 252,
+  "top": 686,
+  "width": 784,
+  "height": 140
+ },
+ "doodle_en5_0": {
+  "left": 946,
+  "top": 0,
+  "width": 344,
+  "height": 311
+ },
+ "doodle_pl1_0": {
+  "left": 0,
+  "top": 418,
+  "width": 542,
+  "height": 528
+ },
  "doodle_pl3_0": {
   "left": 56,
   "top": 45,
-  "width": 1178,
-  "height": 526
+  "width": 1061,
+  "height": 290
+ },
+ "doodle_pl3_1": {
+  "left": 99,
+  "top": 290,
+  "width": 1135,
+  "height": 280
+ },
+ "doodle_pl4_0": {
+  "left": 1023,
+  "top": 0,
+  "width": 234,
+  "height": 268
+ },
+ "doodle_pl4_1": {
+  "left": 252,
+  "top": 616,
+  "width": 784,
+  "height": 140
+ },
+ "doodle_pl5_0": {
+  "left": 946,
+  "top": 0,
+  "width": 344,
+  "height": 311
  }
 }
