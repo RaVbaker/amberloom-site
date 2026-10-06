@@ -24,6 +24,19 @@ Other rules:
 
 Source: [Apple screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications) (checked 2026-10-06). Check it again before a big release, because Apple adds sizes when new iPhones ship. If the 6.9" sizes change, use Canva's **Resize** to make a copy at the new size, then nudge the layers.
 
+### iPad
+
+Apps that run on iPad also need **13" iPad** screenshots. The accepted portrait sizes are 2064 × 2752 and 2048 × 2732, and Apple scales them down for smaller iPads. The App Store currently shows plain simulator screenshots for iPad, with no marketing frame. They're archived in `images/ipad/<lang>/` in App Store order:
+
+| File | Screen | Source (iPad Pro 13-inch (M5) simulator) |
+| --- | --- | --- |
+| `images/ipad/en/image1.png` | Empty journal (Claire) | Simulator Screenshot 2026-06-26 at 23.28.51 |
+| `images/ipad/en/image2.png` | Timeline (Emma) | Simulator Screenshot 2026-06-26 at 23.28.23 |
+| `images/ipad/pl/image1.png` | Empty journal (Lena) | Simulator Screenshot 2026-06-26 at 23.30.33 |
+| `images/ipad/pl/image2.png` | Timeline (Ania) | Simulator Screenshot 2026-06-26 at 23.30.49 |
+
+They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channel, but it's fully opaque, and App Store Connect accepted them that way. If an upload is ever rejected for alpha, flatten them as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
+
 ## Layers on each page
 
 From back to front:
