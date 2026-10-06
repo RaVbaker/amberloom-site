@@ -1,0 +1,80 @@
+{
+ "en4": {
+  "left": 81,
+  "top": 856,
+  "width": 1208,
+  "height": 1940
+ },
+ "en1": {
+  "left": 0,
+  "top": 640,
+  "width": 1290,
+  "height": 2156
+ },
+ "en2": {
+  "left": 0,
+  "top": 112,
+  "width": 1236,
+  "height": 2684
+ },
+ "en3": {
+  "left": 99,
+  "top": 592,
+  "width": 1190,
+  "height": 2204
+ },
+ "en5": {
+  "left": 88,
+  "top": 624,
+  "width": 1063,
+  "height": 2172
+ },
+ "pl1": {
+  "left": 0,
+  "top": 640,
+  "width": 1290,
+  "height": 2156
+ },
+ "pl2": {
+  "left": 0,
+  "top": 112,
+  "width": 1236,
+  "height": 2684
+ },
+ "pl3": {
+  "left": 99,
+  "top": 592,
+  "width": 1190,
+  "height": 2204
+ },
+ "pl4": {
+  "left": 81,
+  "top": 856,
+  "width": 1208,
+  "height": 1940
+ },
+ "pl5": {
+  "left": 88,
+  "top": 624,
+  "width": 1063,
+  "height": 2172
+ },
+ "doodle_en2_0": {
+  "left": 880,
+  "top": 0,
+  "width": 410,
+  "height": 420
+ },
+ "doodle_pl2_0": {
+  "left": 880,
+  "top": 0,
+  "width": 410,
+  "height": 420
+ },
+ "doodle_pl3_0": {
+  "left": 56,
+  "top": 45,
+  "width": 1178,
+  "height": 526
+ }
+}
