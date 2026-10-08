@@ -1,13 +1,13 @@
 # App Store marketing images
 
-The App Store screenshots (`images/en/image1-5.png`, `images/pl/image1-5.png`) are made in Canva, with one design per language:
+The App Store screenshots (`images/en/image1-6.png`, `images/pl/image1-6.png`) are made in Canva, with one design per language:
 
 | Language | Edit | View |
 | --- | --- | --- |
 | English | [Edit in Canva](https://www.canva.com/d/NUTdoh-m_W7zUof) | [View](https://www.canva.com/d/69nWigVpgrzWGtv) |
 | Polish | [Edit in Canva](https://www.canva.com/d/I2lWr8au-V_aY6-) | [View](https://www.canva.com/d/41wFXY8ecGOhZFp) |
 
-Each design has 5 pages in App Store order (page 1 is `image1.png`, and so on). Every page is **1290 × 2796 px**.
+Each design has 6 pages in App Store order (page 1 is `image1.png`, and so on). Every page is **1290 × 2796 px**. Page 6 (Facts, added in 1.1) is a copy of page 5 with a mirrored background (`bg_<lang>6.png`), the phone moved down to y 900 and the underline doodle from page 4.
 
 ## Size Apple requires
 
@@ -52,6 +52,21 @@ Layers, back to front:
 
 `design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
 
+## App screenshots inside the phones (1.1)
+
+The phones show screenshots from an iPhone 17 Pro Max simulator (1320 × 2868, status bar overridden to 9:41) with Marketing Mode on in Settings (demo child Ania/Emma, "today" is 26 June, plus an empty child Lena/Claire). The raw shots are in `design/screenshots-1.1/` as `<lang>_<n>_<screen>.png`:
+
+| Page | Screenshot |
+| --- | --- |
+| 1 (tilted phone, continues behind page 2) | `1_timeline` |
+| 2 | `2_day` |
+| 3 | `3_search` |
+| 4 | `4_empty` |
+| 5 | `5_children` |
+| 6 | `7_height` |
+
+`6_facts` and `8_show` are spares. To refresh the phones after new screenshots, run `python3 design/screenshots-1.1/build_phones.py design/screenshots-1.1 design/canva-layers`. It keeps each phone's shape, rim and shadow from the current layer and only replaces the screen, so then use **Replace** on each phone in Canva (or upload the layer and swap the fill).
+
 ## Layers on each page
 
 From back to front:
@@ -87,7 +102,7 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 
 1. In Canva, go to *Share → Download → PNG*. Choose all pages, size ×1, and leave **Transparent background unticked**. JPG at the highest quality also works.
 2. Check that the files are 1290 × 2796 with no alpha channel. On macOS, `sips -g pixelWidth -g pixelHeight -g hasAlpha *.png` shows this. If `hasAlpha` is `yes`, flatten the files with `sips -s format jpeg -s formatOptions 100 image1.png --out image1.jpg`, or with ImageMagick: `magick image1.png -background white -alpha remove -alpha off image1.png`.
-3. Save them as `images/<lang>/image1-5.png` in this repo, so the site and the App Store use the same files.
+3. Save them as `images/<lang>/image1-6.png` in this repo, so the site and the App Store use the same files.
 4. Upload them to App Store Connect, in your app → the version → *Previews and Screenshots* → iPhone 6.9" display, once for each localisation.
 
 ## Files in this folder
