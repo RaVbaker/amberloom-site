@@ -1,0 +1,132 @@
+{
+ "en": [
+  {
+   "src": "header_bg.png",
+   "left": 0,
+   "top": 0,
+   "width": 4320,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_en1.png",
+   "left": 481,
+   "top": 96,
+   "width": 869,
+   "height": 984
+  },
+  {
+   "src": "header_phone_en2.png",
+   "left": 1310,
+   "top": 0,
+   "width": 870,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_en3.png",
+   "left": 2141,
+   "top": 0,
+   "width": 884,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_en4.png",
+   "left": 2971,
+   "top": 96,
+   "width": 868,
+   "height": 984
+  },
+  {
+   "src": "header_doodle_rays_r.png",
+   "left": 3890,
+   "top": 0,
+   "width": 430,
+   "height": 389
+  },
+  {
+   "src": "header_doodle_rays_l.png",
+   "left": 0,
+   "top": 0,
+   "width": 430,
+   "height": 389
+  },
+  {
+   "src": "header_doodle_sparkle_l.png",
+   "left": 0,
+   "top": 705,
+   "width": 327,
+   "height": 335
+  },
+  {
+   "src": "header_doodle_sparkle_r.png",
+   "left": 3993,
+   "top": 705,
+   "width": 327,
+   "height": 335
+  }
+ ],
+ "pl": [
+  {
+   "src": "header_bg.png",
+   "left": 0,
+   "top": 0,
+   "width": 4320,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_pl1.png",
+   "left": 481,
+   "top": 96,
+   "width": 869,
+   "height": 984
+  },
+  {
+   "src": "header_phone_pl2.png",
+   "left": 1310,
+   "top": 0,
+   "width": 870,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_pl3.png",
+   "left": 2141,
+   "top": 0,
+   "width": 884,
+   "height": 1080
+  },
+  {
+   "src": "header_phone_pl4.png",
+   "left": 2971,
+   "top": 96,
+   "width": 868,
+   "height": 984
+  },
+  {
+   "src": "header_doodle_rays_r.png",
+   "left": 3890,
+   "top": 0,
+   "width": 430,
+   "height": 389
+  },
+  {
+   "src": "header_doodle_rays_l.png",
+   "left": 0,
+   "top": 0,
+   "width": 430,
+   "height": 389
+  },
+  {
+   "src": "header_doodle_sparkle_l.png",
+   "left": 0,
+   "top": 705,
+   "width": 327,
+   "height": 335
+  },
+  {
+   "src": "header_doodle_sparkle_r.png",
+   "left": 3993,
+   "top": 705,
+   "width": 327,
+   "height": 335
+  }
+ ]
+}
