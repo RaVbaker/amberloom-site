@@ -37,6 +37,21 @@ Apps that run on iPad also need **13" iPad** screenshots. The accepted portrait 
 
 They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channel, but it's fully opaque, and App Store Connect accepted them that way. If an upload is ever rejected for alpha, flatten them as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
 
+## App Store header
+
+[Edit in Canva](https://www.canva.com/d/hkpJHxswGm72--U) · [View](https://www.canva.com/d/JckJnx-NHHVk1VG)
+
+One design with two pages, **English** and **Polski**, each **3840 × 1646 px**. App Store Connect accepts 3840 × 1646 and 5244 × 2950 for this artwork, and 3840 × 1646 was picked because the phones fit without upscaling the screenshots. The two middle phones are the key content, so the outer phones and doodles can be cropped on narrow screens.
+
+The artwork has no text, app icon or logo, because Apple's promotional artwork rules don't allow taglines, icons, logos, prices, URLs, or mentions of Apple or the App Store.
+
+Layers, back to front:
+- `header_bg_3840x1646.png`: the gradient, orange on the left to dark red on the right.
+- Four phones: screenshot pages 2, 3, 5 and 4, each with a fresh soft shadow.
+- White doodles in the corners.
+
+`design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
+
 ## Layers on each page
 
 From back to front:
@@ -78,4 +93,5 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 ## Files in this folder
 
 - `canva-layers/`: the layer images the Canva designs were built from, cut from the original PNGs, and `positions.json` with each layer's position on its page.
-- `canva/amberloom-app-store-{en,pl}.html`: the HTML pages imported into Canva with *Import from URL* to create the designs. They load the layers from raw.githubusercontent.com at a fixed commit. You only need them to rebuild a design from scratch, because day-to-day edits happen in Canva.
+- `canva-header/`: the header layers, the script that builds them, and full-size previews.
+- `canva/amberloom-app-store-{en,pl}.html` and `canva/amberloom-app-store-header.html`: the HTML pages imported into Canva with *Import from URL* to create the designs. They load the layers from raw.githubusercontent.com at a fixed commit. You only need them to rebuild a design from scratch, because day-to-day edits happen in Canva.

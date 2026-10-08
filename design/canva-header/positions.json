@@ -1,0 +1,134 @@
+{
+ "3840x1646": {
+  "en": [
+   {
+    "src": "header_bg_3840x1646.png",
+    "left": 0,
+    "top": 0,
+    "width": 3840,
+    "height": 1646
+   },
+   {
+    "src": "header_phone_en1_3840x1646.png",
+    "left": 256,
+    "top": 496,
+    "width": 869,
+    "height": 1150
+   },
+   {
+    "src": "header_phone_en2_3840x1646.png",
+    "left": 1076,
+    "top": 296,
+    "width": 884,
+    "height": 1350
+   },
+   {
+    "src": "header_phone_en3_3840x1646.png",
+    "left": 1896,
+    "top": 296,
+    "width": 868,
+    "height": 1350
+   },
+   {
+    "src": "header_phone_en4_3840x1646.png",
+    "left": 2716,
+    "top": 496,
+    "width": 869,
+    "height": 1150
+   },
+   {
+    "src": "header_doodle_rays_r_3840x1646.png",
+    "left": 3444,
+    "top": 0,
+    "width": 396,
+    "height": 358
+   },
+   {
+    "src": "header_doodle_rays_l_3840x1646.png",
+    "left": 0,
+    "top": 0,
+    "width": 396,
+    "height": 358
+   },
+   {
+    "src": "header_doodle_sparkle_l_3840x1646.png",
+    "left": 0,
+    "top": 1300,
+    "width": 278,
+    "height": 285
+   },
+   {
+    "src": "header_doodle_sparkle_r_3840x1646.png",
+    "left": 3562,
+    "top": 1300,
+    "width": 278,
+    "height": 285
+   }
+  ],
+  "pl": [
+   {
+    "src": "header_bg_3840x1646.png",
+    "left": 0,
+    "top": 0,
+    "width": 3840,
+    "height": 1646
+   },
+   {
+    "src": "header_phone_pl1_3840x1646.png",
+    "left": 256,
+    "top": 496,
+    "width": 869,
+    "height": 1150
+   },
+   {
+    "src": "header_phone_pl2_3840x1646.png",
+    "left": 1076,
+    "top": 296,
+    "width": 884,
+    "height": 1350
+   },
+   {
+    "src": "header_phone_pl3_3840x1646.png",
+    "left": 1896,
+    "top": 296,
+    "width": 868,
+    "height": 1350
+   },
+   {
+    "src": "header_phone_pl4_3840x1646.png",
+    "left": 2716,
+    "top": 496,
+    "width": 869,
+    "height": 1150
+   },
+   {
+    "src": "header_doodle_rays_r_3840x1646.png",
+    "left": 3444,
+    "top": 0,
+    "width": 396,
+    "height": 358
+   },
+   {
+    "src": "header_doodle_rays_l_3840x1646.png",
+    "left": 0,
+    "top": 0,
+    "width": 396,
+    "height": 358
+   },
+   {
+    "src": "header_doodle_sparkle_l_3840x1646.png",
+    "left": 0,
+    "top": 1300,
+    "width": 278,
+    "height": 285
+   },
+   {
+    "src": "header_doodle_sparkle_r_3840x1646.png",
+    "left": 3562,
+    "top": 1300,
+    "width": 278,
+    "height": 285
+   }
+  ]
+ }
+}
