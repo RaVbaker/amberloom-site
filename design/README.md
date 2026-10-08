@@ -37,6 +37,16 @@ Apps that run on iPad also need **13" iPad** screenshots. The accepted portrait 
 
 They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channel, but it's fully opaque, and App Store Connect accepted them that way. If an upload is ever rejected for alpha, flatten them as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
 
+## App Store header (product page artwork)
+
+[Edit in Canva](https://www.canva.com/d/y3vpwRP1loiEwOa) · [View](https://www.canva.com/d/NUCIEkgcYzydvNE)
+
+One design with two pages, **English** and **Polski**, each **4320 × 1080 px**. That is the size Apple uses for the wide header at the top of a featured product page and for featuring artwork. Apple sends the exact template and safe area in App Store Connect once an app is under consideration for featuring, so check it then; the key content here (the two middle phones) sits in the centre, and the outer phones and doodles can be cropped away on narrow screens.
+
+Apple's rules for this artwork (from third-party guides, since Apple's help page wasn't reachable when this was made, checked 2026-10-08): no text or taglines, no app icon or logo, no prices, no URLs, and no mention of Apple or the App Store. That's why the header has no headline. Apple asks for the layered file (PSD) when it requests artwork; upload it only once you're sure, because uploads are one-time.
+
+Layers, back to front: `header_bg.png` (the gradient, orange on the left to dark red on the right), four phones (pages 4, 2, 3 and 5 of the screenshots, with a fresh soft shadow), and the white doodles in the corners. `design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`, and writes previews to `design/canva-header/preview/`. To swap a phone, re-run the script after updating the screenshot layer and use **Replace** on that phone in Canva.
+
 ## Layers on each page
 
 From back to front:
@@ -78,4 +88,5 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 ## Files in this folder
 
 - `canva-layers/`: the layer images the Canva designs were built from, cut from the original PNGs, and `positions.json` with each layer's position on its page.
-- `canva/amberloom-app-store-{en,pl}.html`: the HTML pages imported into Canva with *Import from URL* to create the designs. They load the layers from raw.githubusercontent.com at a fixed commit. You only need them to rebuild a design from scratch, because day-to-day edits happen in Canva.
+- `canva-header/`: the header layers, the script that builds them, and full-size previews.
+- `canva/amberloom-app-store-{en,pl}.html` and `canva/amberloom-app-store-header.html`: the HTML pages imported into Canva with *Import from URL* to create the designs. They load the layers from raw.githubusercontent.com at a fixed commit. You only need them to rebuild a design from scratch, because day-to-day edits happen in Canva.
