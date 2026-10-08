@@ -17,7 +17,7 @@ import cv2
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LAYERS = os.path.join(HERE, "..", "canva-layers")
+LAYERS = os.environ.get('LAYERS', os.path.join(HERE, '..', 'canva-layers'))
 
 # page -> screenshot number (see README.md in this folder)
 PAGES = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 7}
@@ -80,13 +80,21 @@ def rounded_mask(shape, x0, y0, x1, y1, r):
     return m
 
 
-def compose(layer, content, region):
+def compose(layer, content, region, edges=()):
     """Put content into the layer where region (0..255) and the layer is opaque, keeping a 2px rim."""
     opaque = (layer[:, :, 3] >= 250).astype(np.uint8)
-    inner = cv2.erode(opaque, np.ones((5, 5), np.uint8))
+    # Where a phone runs off the page, its last few pixels are soft; treat them as screen too.
+    if "left" in edges:
+        opaque[:, :3] |= opaque[:, 3:4]
+    if "right" in edges:
+        opaque[:, -3:] |= opaque[:, -4:-3]
+    if "bottom" in edges:
+        opaque[-3:, :] |= opaque[-4:-3, :]
+    inner = cv2.erode(opaque, np.ones((5, 5), np.uint8), borderType=cv2.BORDER_REPLICATE)
     a = (inner * (region.astype(np.float32) / 255) * (content[:, :, 3].astype(np.float32) / 255))[..., None]
     out = layer.copy()
     out[..., :3] = (content[..., :3] * a + layer[..., :3] * (1 - a)).astype(np.uint8)
+    out[..., 3] = np.maximum(layer[..., 3], (a[..., 0] * 255).astype(np.uint8))
     return out
 
 
@@ -104,12 +112,14 @@ def build(lang, shots, out_dir):
             layer = cv2.imread(os.path.join(LAYERS, name), cv2.IMREAD_UNCHANGED)
             p = pos[f"{lang}{page}"]
         h, w = layer.shape[:2]
+        edges = [e for e, hit in (("left", p["left"] == 0), ("right", p["left"] + w == page_w),
+                                  ("bottom", p["top"] + h == 2796)) if hit]
         shot = shots[PAGES[page]]
         full = np.full((h, w), 255, np.uint8)
         if page == 1:
             o = tl - np.array([p["left"], p["top"]])
             content = warp(shot, o, ex, ey, width, (w, h))
-            out = compose(layer, content, full)
+            out = compose(layer, content, full, edges)
         else:
             opaque = (layer[:, :, 3] >= 250).astype(np.uint8)
             if page == 2:
@@ -122,12 +132,12 @@ def build(lang, shots, out_dir):
             content = warp(shot, (x0, y0), (1, 0), (0, 1), pw, (w, h))
             r = int(round(pw * 0.135))
             front = rounded_mask((h, w), x0, y0, x1, max(y1, y0 + int(pw * 2.2)), r)
-            out = compose(layer, content, front)
+            out = compose(layer, content, front, edges)
             if page == 2:
                 back_shot = shots[PAGES[1]]
                 o = tl - np.array([page_w + p["left"], p["top"]])
                 back = warp(back_shot, o, ex, ey, width, (w, h))
-                out = compose(out, back, 255 - cv2.dilate(front, np.ones((5, 5), np.uint8)))
+                out = compose(out, back, 255 - cv2.dilate(front, np.ones((5, 5), np.uint8)), edges)
         cv2.imwrite(os.path.join(out_dir, name), out)
         print("wrote", name)
 
