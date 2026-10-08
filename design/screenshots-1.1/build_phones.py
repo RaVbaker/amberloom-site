@@ -20,7 +20,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LAYERS = os.path.join(HERE, "..", "canva-layers")
 
 # page -> screenshot number (see README.md in this folder)
-PAGES = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+PAGES = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 7}
+# Page 6 (facts) reuses page 5's phone shape and shadow, placed lower on the page.
+PAGE6_TOP = 900
 
 
 def warp(shot, tl, ex, ey, width, size):
@@ -92,11 +94,16 @@ def build(lang, shots, out_dir):
     pos = json.load(open(os.path.join(LAYERS, "positions.json")))
     page_w = 1290
     tl, ex, ey, width = rotated_geometry(lang)
-    for page in range(1, 6):
+    for page in range(1, 7):
         name = f"phone_{lang}{page}.png"
-        layer = cv2.imread(os.path.join(LAYERS, name), cv2.IMREAD_UNCHANGED)
+        if page == 6:
+            layer = cv2.imread(os.path.join(LAYERS, f"phone_{lang}5.png"), cv2.IMREAD_UNCHANGED)
+            layer = layer[: 2796 - PAGE6_TOP]
+            p = dict(pos[f"{lang}5"], top=PAGE6_TOP)
+        else:
+            layer = cv2.imread(os.path.join(LAYERS, name), cv2.IMREAD_UNCHANGED)
+            p = pos[f"{lang}{page}"]
         h, w = layer.shape[:2]
-        p = pos[f"{lang}{page}"]
         shot = shots[PAGES[page]]
         full = np.full((h, w), 255, np.uint8)
         if page == 1:
