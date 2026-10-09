@@ -1,13 +1,13 @@
 # App Store marketing images
 
-The App Store screenshots (`images/en/image1-5.png`, `images/pl/image1-5.png`) are made in Canva, with one design per language:
+The App Store screenshots (`images/en/image1-6.png`, `images/pl/image1-6.png`) are made in Canva, with one design per language:
 
 | Language | Edit | View |
 | --- | --- | --- |
 | English | [Edit in Canva](https://www.canva.com/d/NUTdoh-m_W7zUof) | [View](https://www.canva.com/d/69nWigVpgrzWGtv) |
 | Polish | [Edit in Canva](https://www.canva.com/d/I2lWr8au-V_aY6-) | [View](https://www.canva.com/d/41wFXY8ecGOhZFp) |
 
-Each design has 5 pages in App Store order (page 1 is `image1.png`, and so on). Every page is **1290 × 2796 px**.
+Each design has 6 pages in App Store order (page 1 is `image1.png`, and so on). Every page is **1290 × 2796 px**. Page 6 (Facts, added in 1.1) is a copy of page 5 with a mirrored background (`bg_<lang>6.png`), the phone moved down to y 900 and the underline doodle from page 4.
 
 ## Size Apple requires
 
@@ -28,14 +28,17 @@ Source: [Apple screenshot specifications](https://developer.apple.com/help/app-s
 
 Apps that run on iPad also need **13" iPad** screenshots. The accepted portrait sizes are 2064 × 2752 and 2048 × 2732, and Apple scales them down for smaller iPads. The App Store currently shows plain simulator screenshots for iPad, with no marketing frame. They're archived in `images/ipad/<lang>/` in App Store order:
 
-| File | Screen | Source (iPad Pro 13-inch (M5) simulator) |
-| --- | --- | --- |
-| `images/ipad/en/image1.png` | Empty journal (Claire) | Simulator Screenshot 2026-06-26 at 23.28.51 |
-| `images/ipad/en/image2.png` | Timeline (Emma) | Simulator Screenshot 2026-06-26 at 23.28.23 |
-| `images/ipad/pl/image1.png` | Empty journal (Lena) | Simulator Screenshot 2026-06-26 at 23.30.33 |
-| `images/ipad/pl/image2.png` | Timeline (Ania) | Simulator Screenshot 2026-06-26 at 23.30.49 |
+Each language has five screens, in this order. Since 1.1 they come from the iPad Pro 13-inch (M5) simulator in Marketing Mode, on a build without the iCloud entitlement:
 
-They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channel, but it's fully opaque, and App Store Connect accepted them that way. If an upload is ever rejected for alpha, flatten them as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
+| File | Screen (PL / EN) |
+| --- | --- |
+| `image1.png` | Empty journal (Lena / Claire) |
+| `image2.png` | Timeline (Ania / Emma) |
+| `image3.png` | 26 June day page with the fact pills |
+| `image4.png` | Facts list |
+| `image5.png` | Height chart |
+
+They're 2064 × 2752 and flattened (no alpha), so they upload as they are. Raw `simctl io` screenshots carry an alpha channel; flatten them before uploading, as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
 
 ## App Store header
 
@@ -47,17 +50,32 @@ The artwork has no text, app icon or logo, because Apple's promotional artwork r
 
 Layers, back to front:
 - `header_bg_3840x1646.png`: the gradient, orange on the left to dark red on the right.
-- Four phones: screenshot pages 2, 3, 5 and 4, each with a fresh soft shadow.
+- Four phones: screenshot pages 6 (Facts), 3, 5 and 2, each with a fresh soft shadow. Pages 2 and 6 have to be outer phones, because their layers don't reach low enough for the raised middle positions.
 - White doodles in the corners.
 
-`design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
+`design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. Upload those previews (`header_{en,pl}_3840x1646.png`) to App Store Connect rather than a Canva export: Canva resamples placed images on export, so the phones come out soft. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
+
+## App screenshots inside the phones (1.1)
+
+The phones show screenshots from an iPhone 17 Pro Max simulator (1320 × 2868, status bar overridden to 9:41) with Marketing Mode on in Settings (demo child Ania/Emma, "today" is 26 June, plus an empty child Lena/Claire). The raw shots are in `design/screenshots-1.1/` as `<lang>_<n>_<screen>.png`:
+
+| Page | Screenshot |
+| --- | --- |
+| 1 (tilted phone, continues in front of page 2's phone) | `1_timeline` |
+| 2 | `2_day` |
+| 3 | `3_search` |
+| 4 | `4_empty` |
+| 5 | `5_children` |
+| 6 | `7_height` |
+
+`6_facts` and `8_show` are spares. To refresh the phones after new screenshots, run `python3 design/screenshots-1.1/build_phones.py design/screenshots-1.1 design/canva-layers`. On pages 3-6 it keeps each phone's shape, rim and shadow from the current layer and only replaces the screen. Pages 1 and 2 are drawn together from scratch (both phones and their shadows on one two-page canvas, then cut in two), because page 1's tilted phone crosses the seam and lies on top of page 2's phone. After that, so then use **Replace** on each phone in Canva (or upload the layer and swap the fill).
 
 ## Layers on each page
 
 From back to front:
 
 1. **Background**: a full-page image of the original gradient. Canva can't make this kind of gradient natively, so to change the colour, replace this image or put a Canva gradient on top of it.
-2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. The shadow it casts on the background is part of this layer, so replacing it replaces the shadow too. On page 2 this layer also includes the tilted phone on the left.
+2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. The shadow it casts on the background is part of this layer, so replacing it replaces the shadow too. On page 2 this layer also includes the end of page 1's tilted phone, on the left and in front.
 3. **Decorations**: separate images for the doodles (circles, underlines, rays, the heart, the frames on page 3, the asterisk on page 2) and the books on page 3.
 4. **Text**: the headlines, the "Amberloom" pill on page 2, and the "Start with one moment…" line on page 4. All of these are live, editable Canva text.
 
@@ -87,7 +105,8 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 
 1. In Canva, go to *Share → Download → PNG*. Choose all pages, size ×1, and leave **Transparent background unticked**. JPG at the highest quality also works.
 2. Check that the files are 1290 × 2796 with no alpha channel. On macOS, `sips -g pixelWidth -g pixelHeight -g hasAlpha *.png` shows this. If `hasAlpha` is `yes`, flatten the files with `sips -s format jpeg -s formatOptions 100 image1.png --out image1.jpg`, or with ImageMagick: `magick image1.png -background white -alpha remove -alpha off image1.png`.
-3. Save them as `images/<lang>/image1-5.png` in this repo, so the site and the App Store use the same files.
+3. Save them as `images/<lang>/image1-6.png` in this repo, so the site and the App Store use the same files.
+   Then run `python3 design/sharpen_exports.py`. Canva resamples placed images on export, so the phones come out soft; the script draws the full-resolution phone and doodle layers back over the export.
 4. Upload them to App Store Connect, in your app → the version → *Previews and Screenshots* → iPhone 6.9" display, once for each localisation.
 
 ## Files in this folder
