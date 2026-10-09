@@ -61,21 +61,21 @@ The phones show screenshots from an iPhone 17 Pro Max simulator (1320 × 2868, s
 
 | Page | Screenshot |
 | --- | --- |
-| 1 (tilted phone, continues behind page 2) | `1_timeline` |
+| 1 (tilted phone, continues in front of page 2's phone) | `1_timeline` |
 | 2 | `2_day` |
 | 3 | `3_search` |
 | 4 | `4_empty` |
 | 5 | `5_children` |
 | 6 | `7_height` |
 
-`6_facts` and `8_show` are spares. To refresh the phones after new screenshots, run `python3 design/screenshots-1.1/build_phones.py design/screenshots-1.1 design/canva-layers`. It keeps each phone's shape, rim and shadow from the current layer and only replaces the screen, so then use **Replace** on each phone in Canva (or upload the layer and swap the fill).
+`6_facts` and `8_show` are spares. To refresh the phones after new screenshots, run `python3 design/screenshots-1.1/build_phones.py design/screenshots-1.1 design/canva-layers`. On pages 3-6 it keeps each phone's shape, rim and shadow from the current layer and only replaces the screen. Pages 1 and 2 are drawn together from scratch (both phones and their shadows on one two-page canvas, then cut in two), because page 1's tilted phone crosses the seam and lies on top of page 2's phone. After that, so then use **Replace** on each phone in Canva (or upload the layer and swap the fill).
 
 ## Layers on each page
 
 From back to front:
 
 1. **Background**: a full-page image of the original gradient. Canva can't make this kind of gradient natively, so to change the colour, replace this image or put a Canva gradient on top of it.
-2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. The shadow it casts on the background is part of this layer, so replacing it replaces the shadow too. On page 2 this layer also includes the tilted phone on the left.
+2. **Phone**: the device frame with the app screenshot and drop shadow, as one image. The shadow it casts on the background is part of this layer, so replacing it replaces the shadow too. On page 2 this layer also includes the end of page 1's tilted phone, on the left and in front.
 3. **Decorations**: separate images for the doodles (circles, underlines, rays, the heart, the frames on page 3, the asterisk on page 2) and the books on page 3.
 4. **Text**: the headlines, the "Amberloom" pill on page 2, and the "Start with one moment…" line on page 4. All of these are live, editable Canva text.
 
