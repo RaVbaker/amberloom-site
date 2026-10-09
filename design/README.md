@@ -28,14 +28,17 @@ Source: [Apple screenshot specifications](https://developer.apple.com/help/app-s
 
 Apps that run on iPad also need **13" iPad** screenshots. The accepted portrait sizes are 2064 × 2752 and 2048 × 2732, and Apple scales them down for smaller iPads. The App Store currently shows plain simulator screenshots for iPad, with no marketing frame. They're archived in `images/ipad/<lang>/` in App Store order:
 
-| File | Screen | Source (iPad Pro 13-inch (M5) simulator) |
-| --- | --- | --- |
-| `images/ipad/en/image1.png` | Empty journal (Claire) | Simulator Screenshot 2026-06-26 at 23.28.51 |
-| `images/ipad/en/image2.png` | Timeline (Emma) | Simulator Screenshot 2026-06-26 at 23.28.23 |
-| `images/ipad/pl/image1.png` | Empty journal (Lena) | Simulator Screenshot 2026-06-26 at 23.30.33 |
-| `images/ipad/pl/image2.png` | Timeline (Ania) | Simulator Screenshot 2026-06-26 at 23.30.49 |
+Each language has five screens, in this order. Since 1.1 they come from the iPad Pro 13-inch (M5) simulator in Marketing Mode, on a build without the iCloud entitlement:
 
-They're 2064 × 2752, so they upload as they are. The PNGs carry an alpha channel, but it's fully opaque, and App Store Connect accepted them that way. If an upload is ever rejected for alpha, flatten them as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
+| File | Screen (PL / EN) |
+| --- | --- |
+| `image1.png` | Empty journal (Lena / Claire) |
+| `image2.png` | Timeline (Ania / Emma) |
+| `image3.png` | 26 June day page with the fact pills |
+| `image4.png` | Facts list |
+| `image5.png` | Height chart |
+
+They're 2064 × 2752 and flattened (no alpha), so they upload as they are. Raw `simctl io` screenshots carry an alpha channel; flatten them before uploading, as described in "Exporting" below. To make iPad marketing pages later, create a 2064 × 2752 Canva design and follow the iPhone pages' layout.
 
 ## App Store header
 
