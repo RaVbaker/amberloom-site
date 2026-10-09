@@ -1,8 +1,8 @@
 """Rebuild the phone layers in design/canva-layers/ from new simulator screenshots.
 
 Each phone layer keeps its original shape, rim and shadow; only the screen inside is
-replaced. Page 1's phone is rotated -16 degrees and continues onto page 2 behind the
-front phone, so both are drawn from the same geometry.
+replaced. Page 1's phone is rotated -16 degrees and continues onto page 2 in front of the
+front phone (casting a shadow on it), so both are drawn from the same geometry.
 
 Usage: python3 build_phones.py <screens dir> <out dir>
 The screens dir holds <lang>_<n>_*.png from an iPhone 17 Pro Max (1320 x 2868, 440 pt).
@@ -132,12 +132,26 @@ def build(lang, shots, out_dir):
             content = warp(shot, (x0, y0), (1, 0), (0, 1), pw, (w, h))
             r = int(round(pw * 0.135))
             front = rounded_mask((h, w), x0, y0, x1, max(y1, y0 + int(pw * 2.2)), r)
-            out = compose(layer, content, front, edges)
             if page == 2:
+                # page 1's tilted phone lies on top of the front phone here
                 back_shot = shots[PAGES[1]]
+                sh, sw = back_shot.shape[:2]
                 o = tl - np.array([page_w + p["left"], p["top"]])
                 back = warp(back_shot, o, ex, ey, width, (w, h))
-                out = compose(out, back, 255 - cv2.dilate(front, np.ones((5, 5), np.uint8)), edges)
+                body = np.zeros((sh, sw, 4), np.uint8)
+                body[..., 3] = rounded_mask((sh, sw), 0, 0, sw - 1, sh - 1, int(round(sw * 0.135)))
+                tilted = warp(body, o, ex, ey, width, (w, h))[..., 3]
+                # its soft shadow falls on the front screen, down and to the right
+                shadow = np.zeros_like(tilted)
+                shadow[18:, 10:] = tilted[:-18, :-10]
+                shadow = cv2.GaussianBlur(shadow.astype(np.float32) / 255, (0, 0), 26)
+                content = content.copy()
+                content[..., :3] = (content[..., :3] * (1 - 0.55 * shadow)[..., None]).astype(np.uint8)
+                front = cv2.min(front, 255 - cv2.dilate(tilted, np.ones((5, 5), np.uint8)))
+                out = compose(layer, content, front, edges)
+                out = compose(out, back, tilted, edges)
+            else:
+                out = compose(layer, content, front, edges)
         cv2.imwrite(os.path.join(out_dir, name), out)
         print("wrote", name)
 
