@@ -204,6 +204,34 @@ section { padding: 100px 24px; }
 .feat-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--brown-dark); margin-bottom: 8px; }
 .feat-card p { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; }
 
+/* ── FACTS (1.1) ── */
+.facts-section { background: var(--cream); }
+.facts-grid {
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px; align-items: center;
+}
+.facts-points {
+  list-style: none; margin-top: 28px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.facts-points li {
+  background: var(--cream-dark);
+  border: 1px solid rgba(232,133,10,0.1);
+  border-radius: 16px; padding: 14px 18px;
+  font-size: 0.92rem; color: var(--text-soft); line-height: 1.6;
+}
+.facts-note { margin-top: 20px; font-size: 0.85rem; font-weight: 600; color: var(--amber); }
+.facts-demo { justify-self: center; }
+.facts-gif {
+  display: block; width: 300px; max-width: 100%; height: auto;
+  border-radius: 40px; border: 8px solid #2c1a0e;
+  box-shadow: 0 20px 60px rgba(44,26,14,0.18), 0 4px 12px rgba(44,26,14,0.08);
+}
+@media (max-width: 800px) {
+  .facts-grid { grid-template-columns: 1fr; gap: 40px; }
+  .facts-gif { width: 260px; }
+}
+
 /* ── QUESTIONS TICKER ── */
 .questions-section { background: var(--cream); overflow: hidden; padding: 80px 0; }
 .questions-section .container { text-align: center; }
@@ -458,6 +486,27 @@ footer a:hover { color: var(--amber); }
   </div>
 </section>
 
+<!-- FACTS (1.1) -->
+
+<section class="facts-section" id="facts">
+  <div class="container facts-grid">
+    <div>
+      <div class="section-label" data-i18n="facts.label">New in 1.1</div>
+      <h2 class="section-title" data-i18n="facts.title">Facts that grow with them.</h2>
+      <p class="section-sub" data-i18n="facts.sub">Some things change slowly: height, shoe size, a favourite show, a best friend. Save them as Facts and Amberloom keeps every change with its date.</p>
+      <ul class="facts-points">
+        <li data-i18n="facts.points.numbers">📏 Numbers become a chart: watch height or weight climb over the years.</li>
+        <li data-i18n="facts.points.words">📺 Words become a story: see a favourite show go from Peppa Pig to Frozen.</li>
+        <li data-i18n="facts.points.timeline">🗓️ Every new value lands in the timeline, next to that day’s memory.</li>
+      </ul>
+      <p class="facts-note" data-i18n="facts.note">Free: 3 facts. Lifetime: unlimited.</p>
+    </div>
+    <div class="facts-demo">
+      <img class="facts-gif" src="./images/facts-en.gif" width="400" height="869" loading="lazy" alt="Adding a new height measurement in Amberloom and seeing it on the chart" data-i18n-alt="facts.gifAlt" />
+    </div>
+  </div>
+</section>
+
 <!-- QUOTE -->
 
 <section class="quote-section">
@@ -482,6 +531,7 @@ footer a:hover { color: var(--amber); }
           <li data-i18n="pricing.free.items.photos">Photos & text</li>
           <li data-i18n="pricing.free.items.lastDays">Access last 7 days</li>
           <li data-i18n="pricing.free.items.reminder">Daily reminder</li>
+          <li data-i18n="pricing.free.items.facts">3 facts</li>
         </ul>
         <a href="/download" class="pricing-btn pricing-btn-outline js-download-link" data-i18n="cta.downloadFree">Download free</a>
       </div>
@@ -494,7 +544,8 @@ footer a:hover { color: var(--amber); }
           <li data-i18n="pricing.lifetime.items.timeline">Full timeline — all memories</li>
           <li data-i18n="pricing.lifetime.items.voice">Voice memos</li>
           <li data-i18n="pricing.lifetime.items.profiles">Multi-child profiles</li>
-          <li data-i18n="pricing.lifetime.items.export">Export your memories</li>
+          <li data-i18n="pricing.lifetime.items.facts">Unlimited facts</li>
+          <li data-i18n="pricing.lifetime.items.export">Export your memories and facts</li>
         </ul>
         <a href="/download" class="pricing-btn pricing-btn-solid js-download-link" data-i18n="pricing.unlock">Unlock for $2.99</a>
       </div>
@@ -566,10 +617,11 @@ footer a:hover { color: var(--amber); }
         birthday: { title: 'Birthday magic', body: 'Entries on your child\'s birthday are highlighted — a tiny celebration built right in.' },
         private: { title: 'Private by design', body: 'Your memories live on your device. No social feeds, no algorithms, no ads.' }
       } },
+      facts: { label: 'New in 1.1', title: 'Facts that grow with them.', sub: 'Some things change slowly: height, shoe size, a favourite show, a best friend. Save them as Facts and Amberloom keeps every change with its date.', points: { numbers: '📏 Numbers become a chart: watch height or weight climb over the years.', words: '📺 Words become a story: see a favourite show go from Peppa Pig to Frozen.', timeline: '🗓️ Every new value lands in the timeline, next to that day’s memory.' }, note: 'Free: 3 facts. Lifetime: unlimited.', gifAlt: 'Adding a new height measurement in Amberloom and seeing it on the chart' },
       quote: { text: '"The days are long, but the years are short. <em>Amberloom</em> is how we hold onto the short ones."', attr: '— A parent, somewhere, bedtime' },
       pricing: { label: 'Pricing', title: 'Simple, honest pricing.', sub: 'Start free. Unlock forever for the price of a coffee.', unlock: 'Unlock for $2.99',
-        free: { plan: 'Free', desc: 'Always, for everyone', items: { entries: 'Unlimited daily entries', photos: 'Photos & text', lastDays: 'Access last 7 days', reminder: 'Daily reminder' } },
-        lifetime: { plan: 'Lifetime', desc: 'One-time, forever', price: '<sup>$</sup>2.99', items: { everything: 'Everything in Free', timeline: 'Full timeline — all memories', voice: 'Voice memos', profiles: 'Multi-child profiles', export: 'Export your memories' } }
+        free: { plan: 'Free', desc: 'Always, for everyone', items: { entries: 'Unlimited daily entries', photos: 'Photos & text', lastDays: 'Access last 7 days', reminder: 'Daily reminder', facts: '3 facts' } },
+        lifetime: { plan: 'Lifetime', desc: 'One-time, forever', price: '<sup>$</sup>2.99', items: { everything: 'Everything in Free', timeline: 'Full timeline — all memories', voice: 'Voice memos', profiles: 'Multi-child profiles', facts: 'Unlimited facts', export: 'Export your memories and facts' } }
       },
       footerCta: { title: 'Start tonight.<br /><em>They won\'t be this age tomorrow.</em>', sub: 'Free to download. One moment to capture. A lifetime to look back on.' },
       footer: { copy: '© 2026 Amberloom. Made with love for parents.', privacy: 'Privacy', support: 'Support' },
@@ -597,10 +649,11 @@ footer a:hover { color: var(--amber); }
         birthday: { title: 'Urodzinowa magia', body: 'Wpisy z urodzin dziecka są wyróżniane — małe święto wbudowane w aplikację.' },
         private: { title: 'Prywatność z założenia', body: 'Twoje wspomnienia są na Twoim urządzeniu. Bez feedów społecznościowych, algorytmów i reklam.' }
       } },
+      facts: { label: 'Nowość w 1.1', title: 'Fakty, które rosną razem z dzieckiem.', sub: 'Niektóre rzeczy zmieniają się powoli: wzrost, rozmiar buta, ulubiona bajka, najlepszy przyjaciel. Zapisz je jako fakty, a Amberloom zachowa każdą zmianę z datą.', points: { numbers: '📏 Liczby zamieniają się w wykres: zobacz, jak z roku na rok rośnie wzrost czy waga.', words: '📺 Słowa układają się w historię: od Świnki Peppy aż po Krainę Lodu.', timeline: '🗓️ Każda nowa wartość trafia na oś czasu, obok wspomnienia z tego dnia.' }, note: 'Za darmo: 3 fakty. Na zawsze: bez limitu.', gifAlt: 'Dodawanie nowego pomiaru wzrostu w Amberloom i wykres, na którym się pojawia' },
       quote: { text: '"Dni są długie, ale lata krótkie. <em>Amberloom</em> pomaga nam zatrzymać te krótkie."', attr: '— Rodzic, gdzieś, przed snem' },
       pricing: { label: 'Cennik', title: 'Prosto i uczciwie.', sub: 'Zacznij za darmo. Odblokuj na zawsze za cenę kawy.', unlock: 'Odblokuj za 14,99 zł',
-        free: { plan: 'Darmowy', desc: 'Zawsze, dla każdego', items: { entries: 'Nielimitowane codzienne wpisy', photos: 'Zdjęcia i tekst', lastDays: 'Dostęp do ostatnich 7 dni', reminder: 'Codzienne przypomnienie' } },
-        lifetime: { plan: 'Na zawsze', desc: 'Jednorazowo, na zawsze', price: '14,99<sup> zł</sup>', items: { everything: 'Wszystko z planu Darmowy', timeline: 'Pełna oś czasu — wszystkie wspomnienia', voice: 'Notatki głosowe', profiles: 'Profile wielu dzieci', export: 'Eksport wspomnień' } }
+        free: { plan: 'Darmowy', desc: 'Zawsze, dla każdego', items: { entries: 'Nielimitowane codzienne wpisy', photos: 'Zdjęcia i tekst', lastDays: 'Dostęp do ostatnich 7 dni', reminder: 'Codzienne przypomnienie', facts: '3 fakty' } },
+        lifetime: { plan: 'Na zawsze', desc: 'Jednorazowo, na zawsze', price: '14,99<sup> zł</sup>', items: { everything: 'Wszystko z planu Darmowy', timeline: 'Pełna oś czasu — wszystkie wspomnienia', voice: 'Notatki głosowe', profiles: 'Profile wielu dzieci', facts: 'Fakty bez limitu', export: 'Eksport wspomnień i faktów' } }
       },
       footerCta: { title: 'Zacznij dziś wieczorem.<br /><em>Jutro nie będą już w tym wieku.</em>', sub: 'Darmowe pobranie. Jedna chwila do uchwycenia. Całe życie wspominania.' },
       footer: { copy: '© 2026 Amberloom. Z miłości do rodziców.', privacy: 'Prywatność', support: 'Wsparcie' },
@@ -623,10 +676,11 @@ footer a:hover { color: var(--amber); }
         birthday: { title: 'Verjaardagsmagie', body: 'Invoeren op de verjaardag van je kind worden uitgelicht — een klein ingebouwd feestje.' },
         private: { title: 'Privé by design', body: 'Je herinneringen blijven op je apparaat. Geen sociale feeds, geen algoritmes, geen advertenties.' }
       } },
+      facts: { label: 'Nieuw in 1.1', title: 'Feiten die met ze meegroeien.', sub: 'Sommige dingen veranderen langzaam: lengte, schoenmaat, een favoriete serie, een beste vriend. Bewaar ze als feiten en Amberloom houdt elke verandering bij, met datum.', points: { numbers: '📏 Getallen worden een grafiek: zie lengte of gewicht door de jaren heen stijgen.', words: '📺 Woorden worden een verhaal: van Peppa Big tot Frozen.', timeline: '🗓️ Elke nieuwe waarde verschijnt in de tijdlijn, naast de herinnering van die dag.' }, note: 'Gratis: 3 feiten. Levenslang: onbeperkt.', gifAlt: 'Een nieuwe lengtemeting toevoegen in Amberloom en die in de grafiek zien' },
       quote: { text: '"De dagen zijn lang, maar de jaren kort. <em>Amberloom</em> helpt ons die korte jaren vast te houden."', attr: '— Een ouder, ergens, voor het slapengaan' },
       pricing: { label: 'Prijzen', title: 'Eerlijke, simpele prijzen.', sub: 'Begin gratis. Ontgrendel voor altijd voor de prijs van een koffie.', unlock: 'Ontgrendel voor 2,99€',
-        free: { plan: 'Gratis', desc: 'Altijd, voor iedereen', items: { entries: 'Onbeperkt dagelijkse invoeren', photos: 'Foto\'s en tekst', lastDays: 'Toegang tot de laatste 7 dagen', reminder: 'Dagelijkse herinnering' } },
-        lifetime: { plan: 'Levenslang', desc: 'Eenmalig, voor altijd', price: '2,99<sup>€</sup>', items: { everything: 'Alles in Gratis', timeline: 'Volledige tijdlijn — alle herinneringen', voice: 'Spraakmemo\'s', profiles: 'Profielen voor meerdere kinderen', export: 'Exporteer je herinneringen' } }
+        free: { plan: 'Gratis', desc: 'Altijd, voor iedereen', items: { entries: 'Onbeperkt dagelijkse invoeren', photos: 'Foto\'s en tekst', lastDays: 'Toegang tot de laatste 7 dagen', reminder: 'Dagelijkse herinnering', facts: '3 feiten' } },
+        lifetime: { plan: 'Levenslang', desc: 'Eenmalig, voor altijd', price: '2,99<sup>€</sup>', items: { everything: 'Alles in Gratis', timeline: 'Volledige tijdlijn — alle herinneringen', voice: 'Spraakmemo\'s', profiles: 'Profielen voor meerdere kinderen', facts: 'Onbeperkt feiten', export: 'Exporteer je herinneringen en feiten' } }
       },
       footerCta: { title: 'Begin vanavond.<br /><em>Morgen hebben ze deze leeftijd niet meer.</em>', sub: 'Gratis te downloaden. Eén moment om vast te leggen. Een leven lang terugkijken.' },
       footer: { copy: '© 2026 Amberloom. Met liefde gemaakt voor ouders.', privacy: 'Privacy', support: 'Support' },
@@ -649,10 +703,11 @@ footer a:hover { color: var(--amber); }
         birthday: { title: 'Магія дня народження', body: 'Записи в день народження дитини виділяються — маленьке свято прямо в застосунку.' },
         private: { title: 'Приватність за задумом', body: 'Ваші спогади зберігаються на вашому пристрої. Без соцстрічок, алгоритмів і реклами.' }
       } },
+      facts: { label: 'Нове у 1.1', title: 'Факти, що ростуть разом із дитиною.', sub: 'Деякі речі змінюються повільно: зріст, розмір взуття, улюблений мультик, найкращий друг. Збережіть їх як факти, і Amberloom запам’ятає кожну зміну з датою.', points: { numbers: '📏 Числа стають графіком: дивіться, як рік у рік зростають зріст чи вага.', words: '📺 Слова складаються в історію: від «Свинки Пеппи» до «Крижаного серця».', timeline: '🗓️ Кожне нове значення з’являється у стрічці поруч зі спогадом того дня.' }, note: 'Безкоштовно: 3 факти. Назавжди: без обмежень.', gifAlt: 'Додавання нового вимірювання зросту в Amberloom і графік, на якому воно з’являється' },
       quote: { text: '"Дні довгі, а роки короткі. <em>Amberloom</em> допомагає нам утримати ці короткі роки."', attr: '— Один із батьків, десь, перед сном' },
       pricing: { label: 'Ціни', title: 'Просто й чесно.', sub: 'Почніть безкоштовно. Розблокуйте назавжди за ціною чашки кави.', unlock: 'Розблокувати за $3.99',
-        free: { plan: 'Безкоштовно', desc: 'Завжди, для всіх', items: { entries: 'Необмежені щоденні записи', photos: 'Фото й текст', lastDays: 'Доступ до останніх 7 днів', reminder: 'Щоденне нагадування' } },
-        lifetime: { plan: 'Назавжди', desc: 'Разова оплата, назавжди', price: '<sup>$</sup>3.99', items: { everything: 'Усе з Безкоштовно', timeline: 'Повна стрічка — усі спогади', voice: 'Голосові нотатки', profiles: 'Профілі для кількох дітей', export: 'Експорт ваших спогадів' } }
+        free: { plan: 'Безкоштовно', desc: 'Завжди, для всіх', items: { entries: 'Необмежені щоденні записи', photos: 'Фото й текст', lastDays: 'Доступ до останніх 7 днів', reminder: 'Щоденне нагадування', facts: '3 факти' } },
+        lifetime: { plan: 'Назавжди', desc: 'Разова оплата, назавжди', price: '<sup>$</sup>3.99', items: { everything: 'Усе з Безкоштовно', timeline: 'Повна стрічка — усі спогади', voice: 'Голосові нотатки', profiles: 'Профілі для кількох дітей', facts: 'Необмежені факти', export: 'Експорт ваших спогадів і фактів' } }
       },
       footerCta: { title: 'Почніть сьогодні ввечері.<br /><em>Завтра вони вже не будуть цього віку.</em>', sub: 'Безкоштовне завантаження. Одна мить, яку варто зберегти. Спогади на все життя.' },
       footer: { copy: '© 2026 Amberloom. Створено з любов’ю для батьків.', privacy: 'Конфіденційність', support: 'Підтримка' },
@@ -673,6 +728,8 @@ footer a:hover { color: var(--amber); }
     document.querySelectorAll('.store-img').forEach((img, i) => {
       img.src = `${dir}image${i + 1}.png`;
     });
+    const factsGif = document.querySelector('.facts-gif');
+    if (factsGif) factsGif.src = lang === 'pl' ? './images/facts-pl.gif' : './images/facts-en.gif';
   };
 
   const renderTicker = (dict) => {
@@ -697,6 +754,10 @@ footer a:hover { color: var(--amber); }
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const value = getPath(dict, el.dataset.i18nHtml) ?? getPath(translations.en, el.dataset.i18nHtml);
       if (value) el.innerHTML = value;
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const value = getPath(dict, el.dataset.i18nAlt) ?? getPath(translations.en, el.dataset.i18nAlt);
+      if (value) el.alt = value;
     });
     renderTicker(dict);
     setLinks(lang);
