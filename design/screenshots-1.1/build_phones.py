@@ -1,8 +1,8 @@
 """Rebuild the phone layers in design/canva-layers/ from new simulator screenshots.
 
-Each phone layer keeps its original shape, rim and shadow; only the screen inside is
-replaced. Page 1's phone is rotated -16 degrees and continues onto page 2 in front of the
-front phone (casting a shadow on it), so both are drawn from the same geometry.
+Pages 3-6 keep each template phone's shape, rim and shadow; only the screen inside is
+replaced. Page 1's phone is rotated -16 degrees and continues onto page 2 in front of page 2's
+phone, so pages 1 and 2 are drawn together from scratch, shadows included (see seam_pages).
 
 Usage: python3 build_phones.py <screens dir> <out dir>
 The screens dir holds <lang>_<n>_*.png from an iPhone 17 Pro Max (1320 x 2868, 440 pt).
@@ -67,10 +67,6 @@ def rotated_geometry(lang):
     return tl + offset, dt, dl, width
 
 
-def flat_rect(mask_bbox_layer):
-    return mask_bbox_layer
-
-
 def rounded_mask(shape, x0, y0, x1, y1, r):
     m = np.zeros(shape, np.uint8)
     cv2.rectangle(m, (x0 + r, y0), (x1 - r, y1), 255, -1)
@@ -98,10 +94,70 @@ def compose(layer, content, region, edges=()):
     return out
 
 
+# Soft drop shadow (blur sigma, x and y offset, strength), fitted to the template's own phone shadow.
+SHADOW = (31, 24, 12, 1.0)
+MARGIN = 160
+
+
+def shadow_of(mask):
+    sig, dx, dy, k = SHADOW
+    m = cv2.warpAffine(mask, np.float32([[1, 0, dx], [0, 1, dy]]), mask.shape[::-1])
+    return k * cv2.GaussianBlur(m, (0, 0), sig)
+
+
+def over(dst, rgb, a):
+    """Straight-alpha 'over' of rgb with alpha a (0..1 floats) onto dst (h x w x 4 floats)."""
+    a = a[..., None]
+    da = dst[..., 3:4]
+    oa = a + da * (1 - a)
+    dst[..., :3] = np.where(oa > 0, (rgb * a + dst[..., :3] * da * (1 - a)) / np.maximum(oa, 1e-6), 0)
+    dst[..., 3:4] = oa
+
+
+def seam_pages(lang, shots, pos, tl, ex, ey, width):
+    """Pages 1 and 2 share one picture: page 1's phone, tilted, runs over the seam and lies on top
+    of page 2's day-page phone. Both phones and their shadows are drawn from scratch on one
+    two-page canvas (with a margin, so parts off the page still cast shadows), then cut into the
+    two layers: back phone shadow, back phone, tilted phone shadow, tilted phone."""
+    page_w, page_h, m = 1290, 2796, MARGIN
+    size = (2 * page_w + 2 * m, page_h + 2 * m)
+    canvas = np.zeros((size[1], size[0], 4), np.float32)
+    black = np.zeros(3, np.float32)
+
+    # page 2's phone: x 140-1149, y 42-2226 of its layer
+    p2 = pos[f"{lang}2"]
+    x0, y0 = page_w + p2["left"] + 140 + m, p2["top"] + 42 + m
+    x1, y1 = page_w + p2["left"] + 1149 + m, p2["top"] + 2226 + m
+    pw = x1 - x0 + 1
+    back = warp(shots[PAGES[2]], (x0, y0), (1, 0), (0, 1), pw, size).astype(np.float32)
+    back_mask = rounded_mask((size[1], size[0]), x0, y0, x1, y1, int(round(pw * 0.135))).astype(np.float32) / 255
+    over(canvas, black, shadow_of(back_mask))
+    over(canvas, back[..., :3], back_mask)
+
+    # page 1's tilted phone, the rounded body warped with the screenshot so the edges match
+    shot = shots[PAGES[1]]
+    sh, sw = shot.shape[:2]
+    o = tl + m
+    front = warp(shot, o, ex, ey, width, size).astype(np.float32)
+    body = np.zeros((sh, sw, 4), np.uint8)
+    body[..., 3] = rounded_mask((sh, sw), 0, 0, sw - 1, sh - 1, int(round(sw * 0.135)))
+    front_mask = warp(body, o, ex, ey, width, size)[..., 3].astype(np.float32) / 255
+    over(canvas, black, shadow_of(front_mask))
+    over(canvas, front[..., :3], front_mask)
+
+    out = np.clip(canvas * [1, 1, 1, 255] + 0.5, 0, 255).astype(np.uint8)
+    p1 = pos[f"{lang}1"]
+    l1 = out[m + p1["top"]: m + p1["top"] + p1["height"], m + p1["left"]: m + p1["left"] + p1["width"]]
+    l2 = out[m + p2["top"]: m + p2["top"] + p2["height"],
+             m + page_w + p2["left"]: m + page_w + p2["left"] + p2["width"]]
+    return {1: l1, 2: l2}
+
+
 def build(lang, shots, out_dir):
     pos = json.load(open(os.path.join(LAYERS, "positions.json")))
     page_w = 1290
     tl, ex, ey, width = rotated_geometry(lang)
+    seam = seam_pages(lang, shots, pos, tl, ex, ey, width)
     for page in range(1, 7):
         name = f"phone_{lang}{page}.png"
         if page == 6:
@@ -115,43 +171,17 @@ def build(lang, shots, out_dir):
         edges = [e for e, hit in (("left", p["left"] == 0), ("right", p["left"] + w == page_w),
                                   ("bottom", p["top"] + h == 2796)) if hit]
         shot = shots[PAGES[page]]
-        full = np.full((h, w), 255, np.uint8)
-        if page == 1:
-            o = tl - np.array([p["left"], p["top"]])
-            content = warp(shot, o, ex, ey, width, (w, h))
-            out = compose(layer, content, full, edges)
+        if page in (1, 2):
+            out = seam[page]
         else:
             opaque = (layer[:, :, 3] >= 250).astype(np.uint8)
-            if page == 2:
-                # the front phone is fully visible: x 140-1149, y 42-2226 in this layer
-                x0, x1, y0, y1 = 140, 1149, 42, 2226
-            else:
-                ys, xs = np.nonzero(opaque)
-                x0, x1, y0, y1 = xs.min(), xs.max(), ys.min(), ys.max()
+            ys, xs = np.nonzero(opaque)
+            x0, x1, y0, y1 = xs.min(), xs.max(), ys.min(), ys.max()
             pw = x1 - x0 + 1
             content = warp(shot, (x0, y0), (1, 0), (0, 1), pw, (w, h))
             r = int(round(pw * 0.135))
             front = rounded_mask((h, w), x0, y0, x1, max(y1, y0 + int(pw * 2.2)), r)
-            if page == 2:
-                # page 1's tilted phone lies on top of the front phone here
-                back_shot = shots[PAGES[1]]
-                sh, sw = back_shot.shape[:2]
-                o = tl - np.array([page_w + p["left"], p["top"]])
-                back = warp(back_shot, o, ex, ey, width, (w, h))
-                body = np.zeros((sh, sw, 4), np.uint8)
-                body[..., 3] = rounded_mask((sh, sw), 0, 0, sw - 1, sh - 1, int(round(sw * 0.135)))
-                tilted = warp(body, o, ex, ey, width, (w, h))[..., 3]
-                # its soft shadow falls on the front screen, down and to the right
-                shadow = np.zeros_like(tilted)
-                shadow[18:, 10:] = tilted[:-18, :-10]
-                shadow = cv2.GaussianBlur(shadow.astype(np.float32) / 255, (0, 0), 26)
-                content = content.copy()
-                content[..., :3] = (content[..., :3] * (1 - 0.55 * shadow)[..., None]).astype(np.uint8)
-                front = cv2.min(front, 255 - cv2.dilate(tilted, np.ones((5, 5), np.uint8)))
-                out = compose(layer, content, front, edges)
-                out = compose(out, back, tilted, edges)
-            else:
-                out = compose(layer, content, front, edges)
+            out = compose(layer, content, front, edges)
         cv2.imwrite(os.path.join(out_dir, name), out)
         print("wrote", name)
 
