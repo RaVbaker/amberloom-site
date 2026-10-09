@@ -97,6 +97,10 @@ def compose(layer, content, region, edges=()):
 # Soft drop shadow (blur sigma, x and y offset, strength), fitted to the template's own phone shadow.
 SHADOW = (31, 24, 12, 1.0)
 MARGIN = 160
+# The App Store shows the screenshots side by side with a gap between them, about 33 px for a
+# 760 px wide screenshot on an iPhone, so 56 px at 1290. Page 2 sits that far right of page 1 on the
+# shared canvas, so the tilted phone lines up across the gap, not across a seamless join.
+GAP = 56
 
 
 def shadow_of(mask):
@@ -120,14 +124,15 @@ def seam_pages(lang, shots, pos, tl, ex, ey, width):
     two-page canvas (with a margin, so parts off the page still cast shadows), then cut into the
     two layers: back phone shadow, back phone, tilted phone shadow, tilted phone."""
     page_w, page_h, m = 1290, 2796, MARGIN
-    size = (2 * page_w + 2 * m, page_h + 2 * m)
+    size = (2 * page_w + GAP + 2 * m, page_h + 2 * m)
+    p2x = page_w + GAP  # page 2's left edge on the canvas
     canvas = np.zeros((size[1], size[0], 4), np.float32)
     black = np.zeros(3, np.float32)
 
     # page 2's phone: x 140-1149, y 42-2226 of its layer
     p2 = pos[f"{lang}2"]
-    x0, y0 = page_w + p2["left"] + 140 + m, p2["top"] + 42 + m
-    x1, y1 = page_w + p2["left"] + 1149 + m, p2["top"] + 2226 + m
+    x0, y0 = p2x + p2["left"] + 140 + m, p2["top"] + 42 + m
+    x1, y1 = p2x + p2["left"] + 1149 + m, p2["top"] + 2226 + m
     pw = x1 - x0 + 1
     back = warp(shots[PAGES[2]], (x0, y0), (1, 0), (0, 1), pw, size).astype(np.float32)
     back_mask = rounded_mask((size[1], size[0]), x0, y0, x1, y1, int(round(pw * 0.135))).astype(np.float32) / 255
@@ -149,7 +154,7 @@ def seam_pages(lang, shots, pos, tl, ex, ey, width):
     p1 = pos[f"{lang}1"]
     l1 = out[m + p1["top"]: m + p1["top"] + p1["height"], m + p1["left"]: m + p1["left"] + p1["width"]]
     l2 = out[m + p2["top"]: m + p2["top"] + p2["height"],
-             m + page_w + p2["left"]: m + page_w + p2["left"] + p2["width"]]
+             m + p2x + p2["left"]: m + p2x + p2["left"] + p2["width"]]
     return {1: l1, 2: l2}
 
 
