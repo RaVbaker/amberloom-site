@@ -8,7 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', 'canva-layers')
 OUT = HERE
 PREV = os.path.join(HERE, 'preview')
-ORDER = [2, 3, 5, 4]          # screenshot pages used, left to right
+ORDER = [6, 3, 5, 2]          # screenshot pages used, left to right (6 = Facts, since 1.1)
 # per size: phone frame width, gap between phones, frame tops (arch; pushed down if a phone
 # would end above the bottom edge), doodle scale. Phones stay at or below the source scale.
 SIZES = {

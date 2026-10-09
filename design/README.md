@@ -50,10 +50,10 @@ The artwork has no text, app icon or logo, because Apple's promotional artwork r
 
 Layers, back to front:
 - `header_bg_3840x1646.png`: the gradient, orange on the left to dark red on the right.
-- Four phones: screenshot pages 2, 3, 5 and 4, each with a fresh soft shadow.
+- Four phones: screenshot pages 6 (Facts), 3, 5 and 2, each with a fresh soft shadow. Pages 2 and 6 have to be outer phones, because their layers don't reach low enough for the raised middle positions.
 - White doodles in the corners.
 
-`design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
+`design/canva-header/build_header.py` rebuilds every layer and `positions.json` from `design/canva-layers/`. It also writes full-size previews to `design/canva-header/preview/`. Upload those previews (`header_{en,pl}_3840x1646.png`) to App Store Connect rather than a Canva export: Canva resamples placed images on export, so the phones come out soft. To build another size, add it to `SIZES` in the script. To swap a phone, update the screenshot layer, re-run the script and use **Replace** on that phone in Canva.
 
 ## App screenshots inside the phones (1.1)
 
@@ -106,6 +106,7 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 1. In Canva, go to *Share → Download → PNG*. Choose all pages, size ×1, and leave **Transparent background unticked**. JPG at the highest quality also works.
 2. Check that the files are 1290 × 2796 with no alpha channel. On macOS, `sips -g pixelWidth -g pixelHeight -g hasAlpha *.png` shows this. If `hasAlpha` is `yes`, flatten the files with `sips -s format jpeg -s formatOptions 100 image1.png --out image1.jpg`, or with ImageMagick: `magick image1.png -background white -alpha remove -alpha off image1.png`.
 3. Save them as `images/<lang>/image1-6.png` in this repo, so the site and the App Store use the same files.
+   Then run `python3 design/sharpen_exports.py`. Canva resamples placed images on export, so the phones come out soft; the script draws the full-resolution phone and doodle layers back over the export.
 4. Upload them to App Store Connect, in your app → the version → *Previews and Screenshots* → iPhone 6.9" display, once for each localisation.
 
 ## Files in this folder
