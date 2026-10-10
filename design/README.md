@@ -1,6 +1,7 @@
 # App Store marketing images
 
-The App Store screenshots (`images/en/image1-6.png`, `images/pl/image1-6.png`) are made in Canva, with one design per language:
+The App Store screenshots (`images/en/image1-6.png`, `images/pl/image1-6.png`) are made in Canva, with one design per language. They are 1290 × 2796, which App Store Connect accepts in the 6.9" iPhone slot. The 6.3" slot accepts only 1206 × 2622 or 1179 × 2556, so `images/iphone-6.3/<lang>/image1-6.png` are scaled copies made by `python3 design/make_iphone_6_3.py`. Re-run it whenever the main images change.
+
 
 | Language | Edit | View |
 | --- | --- | --- |
