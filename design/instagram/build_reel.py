@@ -14,7 +14,7 @@ import math
 import os
 import subprocess
 
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -52,7 +52,6 @@ COPY = {
         "w_text_ago": "3 miesiące temu",
         "tagline": "Prywatny dziennik\nwspomnień dziecka",
         "cta": "Pobierz za darmo w App Store",
-        "url": "amberloom.app",
         "post_title": "Nowość w Amberloom:\nfakty i widgety.",
         "post_sub": "Wzrost, ulubione rzeczy i pytanie dnia\nna ekranie początkowym.",
     },
@@ -74,7 +73,6 @@ COPY = {
         "w_text_ago": "3 months ago",
         "tagline": "A private journal of\nyour child's moments",
         "cta": "Download free on the App Store",
-        "url": "amberloom.app",
         "post_title": "New in Amberloom:\nfacts and widgets.",
         "post_sub": "Height, favourite things and today's\nquestion on your Home Screen.",
     },
@@ -395,7 +393,6 @@ def build_assets(lang):
     A["name"] = text_block("Amberloom", head_font(150), tracking=-4)
     A["tag"] = text_block(c["tagline"], font("Lora-Italic.ttf", 64), spacing=0.15)
     A["cta"] = pill(c["cta"], font("Inter-SemiBold.otf", 44), (191, 88, 0), WHITE, pad=(56, 32))
-    A["url"] = text_block(c["url"], font("Inter-Medium.otf", 40), fill=(255, 225, 200))
     return A
 
 
@@ -456,15 +453,14 @@ def render_frame(t, A, cam=None):
     if cam + W > W * 3.0:
         p = ease_back(prog(lt, -0.1, 0.6))
         icon = A["icon"]
-        place(frame, icon, sx(3, (W - icon.width) / 2), 330, alpha=clamp(p * 1.4), scale=max(0.01, 0.5 + 0.5 * p))
+        place(frame, icon, sx(3, (W - icon.width) / 2), 270, alpha=clamp(p * 1.4), scale=max(0.01, 0.5 + 0.5 * p))
         p = ease_out(prog(lt, 0.35, 0.6))
-        place(frame, A["name"], sx(3, (W - A["name"].width) / 2), 790 + 30 * (1 - p), alpha=p)
+        place(frame, A["name"], sx(3, (W - A["name"].width) / 2), 730 + 30 * (1 - p), alpha=p)
         p = ease_out(prog(lt, 0.6, 0.6))
-        place(frame, A["tag"], sx(3, (W - A["tag"].width) / 2), 1010 + 30 * (1 - p), alpha=p)
+        place(frame, A["tag"], sx(3, (W - A["tag"].width) / 2), 950 + 30 * (1 - p), alpha=p)
         p = ease_back(prog(lt, 1.0, 0.55))
-        place(frame, A["cta"], sx(3, (W - A["cta"].width) / 2), 1330, alpha=clamp(p * 1.4), scale=max(0.01, 0.7 + 0.3 * p))
-        p = ease_out(prog(lt, 1.3, 0.5))
-        place(frame, A["url"], sx(3, (W - A["url"].width) / 2), 1500, alpha=p)
+        place(frame, A["cta"], sx(3, (W - A["cta"].width) / 2), 1250, alpha=clamp(p * 1.4), scale=max(0.01, 0.7 + 0.3 * p))
+        # y 1420-1600 stays empty for the link (amberloom.app/download), added in Instagram.
 
     return frame.convert("RGB")
 
@@ -492,12 +488,20 @@ def render_post(lang, A, path):
     bg.alpha_composite(sub, ((PW - sub.width) // 2, 70 + title.height + 10))
     ph, pad = phone(f"{lang}_7_height.png", 560)
     top = 480
-    bg.alpha_composite(ph.crop((0, 0, ph.width, min(ph.height, PH - top + pad))), (40 - pad + 20, top - pad))
+    # The phone fades out above the bottom band, which stays empty for the link.
+    link_band = 180
+    ph = ph.crop((0, 0, ph.width, PH - link_band - top + pad))
+    fade = 150
+    a = ph.getchannel("A")
+    ramp = Image.linear_gradient("L").resize((ph.width, fade)).point(lambda v: 255 - v)
+    a.paste(ImageChops.multiply(a.crop((0, ph.height - fade, ph.width, ph.height)), ramp), (0, ph.height - fade))
+    ph.putalpha(a)
+    bg.alpha_composite(ph, (40 - pad + 20, top - pad))
     scale = 2.0
     wh, wpad = drop_shadow(height_widget(c, scale), blur=26, offset=(0, 20), opacity=0.5)
     wt, _ = drop_shadow(text_widget(c, scale), blur=26, offset=(0, 20), opacity=0.5)
-    bg.alpha_composite(wh, (640 - wpad, 560 - wpad))
-    bg.alpha_composite(wt, (640 - wpad, 920 - wpad))
+    bg.alpha_composite(wh, (640 - wpad, 520 - wpad))
+    bg.alpha_composite(wt, (640 - wpad, 850 - wpad))
     badge = starburst(c["badge"], 190).rotate(12, Image.BICUBIC)
     bg.alpha_composite(badge, (6, 410))
     bg.convert("RGB").save(path)

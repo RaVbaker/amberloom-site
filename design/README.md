@@ -117,7 +117,7 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 
 ## Instagram reel and post (1.1)
 
-`design/instagram/build_reel.py` draws a 15 s vertical reel (1080 × 1920, 30 fps, MP4) and a 1080 × 1350 feed post for Polish and English, straight from the full-resolution screenshots in `design/screenshots-1.1/` and the doodles in `design/canva-layers/`, so the phones stay sharp. Scenes: daily question and timeline, Facts with the height chart and a "Nowość w 1.1" badge, the home-screen widgets (drawn after `AmberloomWidgets`, sample data), and an end card with the icon and "Pobierz za darmo w App Store". The reel has no music, so add a sound in Instagram.
+`design/instagram/build_reel.py` draws a 15 s vertical reel (1080 × 1920, 30 fps, MP4) and a 1080 × 1350 feed post for Polish and English, straight from the full-resolution screenshots in `design/screenshots-1.1/` and the doodles in `design/canva-layers/`, so the phones stay sharp. Scenes: daily question and timeline, Facts with the height chart and a "Nowość w 1.1" badge, the home-screen widgets (drawn after `AmberloomWidgets`, sample data), and an end card with the icon and "Pobierz za darmo w App Store". The end card (y 1420 to 1600) and the bottom 180 px of the post are left empty for the amberloom.app/download link, added by hand. The reel has no music, so add a sound in Instagram.
 
 ```
 python3 design/instagram/build_reel.py            # Polish
