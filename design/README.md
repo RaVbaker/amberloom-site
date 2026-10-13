@@ -114,3 +114,15 @@ On page 4, the dark "Start with one moment…" text sits on top of the screensho
 - `canva-layers/`: the layer images the Canva designs were built from, cut from the original PNGs, and `positions.json` with each layer's position on its page.
 - `canva-header/`: the header layers, the script that builds them, and full-size previews.
 - `canva/amberloom-app-store-{en,pl}.html` and `canva/amberloom-app-store-header.html`: the HTML pages imported into Canva with *Import from URL* to create the designs. They load the layers from raw.githubusercontent.com at a fixed commit. You only need them to rebuild a design from scratch, because day-to-day edits happen in Canva.
+
+## Instagram reel and post (1.1)
+
+`design/instagram/build_reel.py` draws a 15 s vertical reel (1080 × 1920, 30 fps, MP4) and a 1080 × 1350 feed post for Polish and English, straight from the full-resolution screenshots in `design/screenshots-1.1/` and the doodles in `design/canva-layers/`, so the phones stay sharp. Scenes: daily question and timeline, Facts with the height chart and a "Nowość w 1.1" badge, the home-screen widgets (drawn after `AmberloomWidgets`, sample data), and an end card with the icon and "Pobierz za darmo w App Store". The reel has no music, so add a sound in Instagram.
+
+```
+python3 design/instagram/build_reel.py            # Polish
+python3 design/instagram/build_reel.py --lang en  # English
+python3 design/instagram/build_reel.py --stills   # preview frames only
+```
+
+Output goes to `design/instagram/out/`. Copy text and timings live at the top of the script. Fonts (Bricolage Grotesque, Lora, Inter, all OFL) are in `design/instagram/fonts/`.
